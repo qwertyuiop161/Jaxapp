@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/Hashir/jaxapp/Jaxapp/src/Lexer.cpp" "CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj" "gcc" "CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj.d"
+  "C:/Users/Hashir/jaxapp/Jaxapp/src/Token.cpp" "CMakeFiles/JAXAPP.dir/src/Token.cpp.obj" "gcc" "CMakeFiles/JAXAPP.dir/src/Token.cpp.obj.d"
   "C:/Users/Hashir/jaxapp/Jaxapp/src/main.cpp" "CMakeFiles/JAXAPP.dir/src/main.cpp.obj" "gcc" "CMakeFiles/JAXAPP.dir/src/main.cpp.obj.d"
   )
 

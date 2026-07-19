@@ -63,4 +63,17 @@ struct Token {
     std::string lexeme;
     int line;
     int column;
+    Token(
+        TokenType type,
+        std::string lexeme,
+        int line,
+        int column
+    )
+        :
+        type(type),
+        lexeme(lexeme),
+        line(line),
+        column(column)
+    {}
 };
+std::string tokenTypeToString(TokenType type);

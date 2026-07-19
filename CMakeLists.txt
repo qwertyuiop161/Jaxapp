@@ -10,4 +10,5 @@ include_directories(include)
 add_executable(JAXAPP
     src/main.cpp
     src/Lexer.cpp
+    src/Token.cpp
 )
