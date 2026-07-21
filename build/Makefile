@@ -152,6 +152,30 @@ src/Lexer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/Lexer.cpp.s
 .PHONY : src/Lexer.cpp.s
 
+src/Parser.obj: src/Parser.cpp.obj
+.PHONY : src/Parser.obj
+
+# target to build an object file
+src/Parser.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/Parser.cpp.obj
+.PHONY : src/Parser.cpp.obj
+
+src/Parser.i: src/Parser.cpp.i
+.PHONY : src/Parser.i
+
+# target to preprocess a source file
+src/Parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/Parser.cpp.i
+.PHONY : src/Parser.cpp.i
+
+src/Parser.s: src/Parser.cpp.s
+.PHONY : src/Parser.s
+
+# target to generate assembly for a file
+src/Parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/Parser.cpp.s
+.PHONY : src/Parser.cpp.s
+
 src/Token.obj: src/Token.cpp.obj
 .PHONY : src/Token.obj
 
@@ -212,6 +236,9 @@ help:
 	@echo ... src/Lexer.obj
 	@echo ... src/Lexer.i
 	@echo ... src/Lexer.s
+	@echo ... src/Parser.obj
+	@echo ... src/Parser.i
+	@echo ... src/Parser.s
 	@echo ... src/Token.obj
 	@echo ... src/Token.i
 	@echo ... src/Token.s

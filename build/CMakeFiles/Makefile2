@@ -84,12 +84,12 @@ clean: CMakeFiles/JAXAPP.dir/clean
 CMakeFiles/JAXAPP.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles --progress-num=1,2,3,4 "Built target JAXAPP"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles --progress-num=1,2,3,4,5 "Built target JAXAPP"
 .PHONY : CMakeFiles/JAXAPP.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/JAXAPP.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/JAXAPP.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles 0
 .PHONY : CMakeFiles/JAXAPP.dir/rule
@@ -101,7 +101,7 @@ JAXAPP: CMakeFiles/JAXAPP.dir/rule
 # codegen rule for target.
 CMakeFiles/JAXAPP.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles --progress-num=1,2,3,4 "Finished codegen for target JAXAPP"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles --progress-num=1,2,3,4,5 "Finished codegen for target JAXAPP"
 .PHONY : CMakeFiles/JAXAPP.dir/codegen
 
 # clean rule for target.
