@@ -22,9 +22,22 @@ int main() {
     Parser parser(tokens);
     auto program = parser.parse();
 
-    std::cout << "Parsed "
-              << program->functions.size()
-              << "function(s).\n";
+    std::cout << "Program\n";
+    for (const auto& function : program->functions) {
+        std::cout<< "  Function: " << function->name << "\n";
+        for (const auto& statement : function->body) {
+            if (auto* call = dynamic_cast<FunctionCall*>(statement.get())) {
+                std::cout << "   Call: " << call->name << "\n";
+                for (const auto& argument : call->arguments) {
+                    if (auto* stringLiteral = dynamic_cast<StringLiteral*>(argument.get())) {
+                        std::cout << "    String: \""
+                                  << stringLiteral->value
+                                  << "\"\n";
+                    }
+                }
+            }
+        }
+    }
     
     return 0;
 }
