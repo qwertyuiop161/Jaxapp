@@ -22,5 +22,11 @@
   "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\Parser.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\Parser.cpp",
   "file": "C:/Users/Hashir/jaxapp/Jaxapp/src/Parser.cpp",
   "output": "CMakeFiles/JAXAPP.dir/src/Parser.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hashir/jaxapp/Jaxapp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\ASTPrinter.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\ASTPrinter.cpp",
+  "file": "C:/Users/Hashir/jaxapp/Jaxapp/src/ASTPrinter.cpp",
+  "output": "CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj"
 }
 ]

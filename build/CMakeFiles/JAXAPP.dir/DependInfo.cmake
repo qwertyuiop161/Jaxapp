@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "C:/Users/Hashir/jaxapp/Jaxapp/src/ASTPrinter.cpp" "CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj" "gcc" "CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj.d"
   "C:/Users/Hashir/jaxapp/Jaxapp/src/Lexer.cpp" "CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj" "gcc" "CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj.d"
   "C:/Users/Hashir/jaxapp/Jaxapp/src/Parser.cpp" "CMakeFiles/JAXAPP.dir/src/Parser.cpp.obj" "gcc" "CMakeFiles/JAXAPP.dir/src/Parser.cpp.obj.d"
   "C:/Users/Hashir/jaxapp/Jaxapp/src/Token.cpp" "CMakeFiles/JAXAPP.dir/src/Token.cpp.obj" "gcc" "CMakeFiles/JAXAPP.dir/src/Token.cpp.obj.d"

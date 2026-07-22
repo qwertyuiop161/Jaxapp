@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj"
+  "CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj.d"
   "CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj"
   "CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj.d"
   "CMakeFiles/JAXAPP.dir/src/Parser.cpp.obj"

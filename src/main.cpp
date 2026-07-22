@@ -4,6 +4,7 @@
 
 #include "Lexer.h"
 #include "Parser.h"
+#include "ASTPrinter.h"
 
 int main() {
     std::ifstream file("../examples/hello.jx");
@@ -22,22 +23,8 @@ int main() {
     Parser parser(tokens);
     auto program = parser.parse();
 
-    std::cout << "Program\n";
-    for (const auto& function : program->functions) {
-        std::cout<< "  Function: " << function->name << "\n";
-        for (const auto& statement : function->body) {
-            if (auto* call = dynamic_cast<FunctionCall*>(statement.get())) {
-                std::cout << "   Call: " << call->name << "\n";
-                for (const auto& argument : call->arguments) {
-                    if (auto* stringLiteral = dynamic_cast<StringLiteral*>(argument.get())) {
-                        std::cout << "    String: \""
-                                  << stringLiteral->value
-                                  << "\"\n";
-                    }
-                }
-            }
-        }
-    }
+    ASTPrinter printer;
+    printer.print(*program);
     
     return 0;
 }

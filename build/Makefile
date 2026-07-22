@@ -128,6 +128,30 @@ JAXAPP/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/build
 .PHONY : JAXAPP/fast
 
+src/ASTPrinter.obj: src/ASTPrinter.cpp.obj
+.PHONY : src/ASTPrinter.obj
+
+# target to build an object file
+src/ASTPrinter.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj
+.PHONY : src/ASTPrinter.cpp.obj
+
+src/ASTPrinter.i: src/ASTPrinter.cpp.i
+.PHONY : src/ASTPrinter.i
+
+# target to preprocess a source file
+src/ASTPrinter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.i
+.PHONY : src/ASTPrinter.cpp.i
+
+src/ASTPrinter.s: src/ASTPrinter.cpp.s
+.PHONY : src/ASTPrinter.s
+
+# target to generate assembly for a file
+src/ASTPrinter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.s
+.PHONY : src/ASTPrinter.cpp.s
+
 src/Lexer.obj: src/Lexer.cpp.obj
 .PHONY : src/Lexer.obj
 
@@ -233,6 +257,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... JAXAPP
+	@echo ... src/ASTPrinter.obj
+	@echo ... src/ASTPrinter.i
+	@echo ... src/ASTPrinter.s
 	@echo ... src/Lexer.obj
 	@echo ... src/Lexer.i
 	@echo ... src/Lexer.s
