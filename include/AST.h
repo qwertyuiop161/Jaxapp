@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <memory>
 #include <string>
@@ -36,4 +36,14 @@ class FunctionDeclaration : public ASTNode {
 class Program : public ASTNode {
     public:
         std::vector<std::unique_ptr<FunctionDeclaration>> functions;
+};
+class VariableDeclaration : public Statement {
+    public:
+        std::string type;
+        std::string name;
+        std::unique_ptr<Expression> initializer;
+        VariableDeclaration(
+            const std::string& type,
+            const std::string& name,
+            std::unique_ptr<Expression> initializer) : type(type), name(name), initializer(std::move(initializer)) {}
 };

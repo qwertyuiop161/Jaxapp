@@ -1,3 +1,4 @@
 fn main() {
-    print("Hello World");
+    string message = "hello wordl";
+    print(message);
 }

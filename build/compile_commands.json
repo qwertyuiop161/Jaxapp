@@ -1,32 +1,44 @@
 [
 {
   "directory": "C:/Users/Hashir/jaxapp/Jaxapp/build",
-  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\main.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\main.cpp",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\main.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\main.cpp",
   "file": "C:/Users/Hashir/jaxapp/Jaxapp/src/main.cpp",
   "output": "CMakeFiles/JAXAPP.dir/src/main.cpp.obj"
 },
 {
   "directory": "C:/Users/Hashir/jaxapp/Jaxapp/build",
-  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\Lexer.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\Lexer.cpp",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\Lexer.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\Lexer.cpp",
   "file": "C:/Users/Hashir/jaxapp/Jaxapp/src/Lexer.cpp",
   "output": "CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj"
 },
 {
   "directory": "C:/Users/Hashir/jaxapp/Jaxapp/build",
-  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\Token.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\Token.cpp",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\Token.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\Token.cpp",
   "file": "C:/Users/Hashir/jaxapp/Jaxapp/src/Token.cpp",
   "output": "CMakeFiles/JAXAPP.dir/src/Token.cpp.obj"
 },
 {
   "directory": "C:/Users/Hashir/jaxapp/Jaxapp/build",
-  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\Parser.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\Parser.cpp",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\Parser.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\Parser.cpp",
   "file": "C:/Users/Hashir/jaxapp/Jaxapp/src/Parser.cpp",
   "output": "CMakeFiles/JAXAPP.dir/src/Parser.cpp.obj"
 },
 {
   "directory": "C:/Users/Hashir/jaxapp/Jaxapp/build",
-  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\ASTPrinter.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\ASTPrinter.cpp",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\ASTPrinter.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\ASTPrinter.cpp",
   "file": "C:/Users/Hashir/jaxapp/Jaxapp/src/ASTPrinter.cpp",
   "output": "CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hashir/jaxapp/Jaxapp/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\Semantic.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\Semantic.cpp",
+  "file": "C:/Users/Hashir/jaxapp/Jaxapp/src/Semantic.cpp",
+  "output": "CMakeFiles/JAXAPP.dir/src/Semantic.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hashir/jaxapp/Jaxapp/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\JAXAPP.dir\\includes_CXX.rsp -std=gnu++20 -o CMakeFiles\\JAXAPP.dir\\src\\CodeGen.cpp.obj -c C:\\Users\\Hashir\\jaxapp\\Jaxapp\\src\\CodeGen.cpp",
+  "file": "C:/Users/Hashir/jaxapp/Jaxapp/src/CodeGen.cpp",
+  "output": "CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.obj"
 }
 ]

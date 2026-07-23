@@ -14,4 +14,6 @@ add_executable(JAXAPP
     src/Token.cpp
     src/Parser.cpp
     src/ASTPrinter.cpp
+    src/Semantic.cpp
+    src/CodeGen.cpp
 )

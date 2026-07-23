@@ -152,6 +152,30 @@ src/ASTPrinter.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.s
 .PHONY : src/ASTPrinter.cpp.s
 
+src/CodeGen.obj: src/CodeGen.cpp.obj
+.PHONY : src/CodeGen.obj
+
+# target to build an object file
+src/CodeGen.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.obj
+.PHONY : src/CodeGen.cpp.obj
+
+src/CodeGen.i: src/CodeGen.cpp.i
+.PHONY : src/CodeGen.i
+
+# target to preprocess a source file
+src/CodeGen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.i
+.PHONY : src/CodeGen.cpp.i
+
+src/CodeGen.s: src/CodeGen.cpp.s
+.PHONY : src/CodeGen.s
+
+# target to generate assembly for a file
+src/CodeGen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.s
+.PHONY : src/CodeGen.cpp.s
+
 src/Lexer.obj: src/Lexer.cpp.obj
 .PHONY : src/Lexer.obj
 
@@ -199,6 +223,30 @@ src/Parser.s: src/Parser.cpp.s
 src/Parser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/Parser.cpp.s
 .PHONY : src/Parser.cpp.s
+
+src/Semantic.obj: src/Semantic.cpp.obj
+.PHONY : src/Semantic.obj
+
+# target to build an object file
+src/Semantic.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/Semantic.cpp.obj
+.PHONY : src/Semantic.cpp.obj
+
+src/Semantic.i: src/Semantic.cpp.i
+.PHONY : src/Semantic.i
+
+# target to preprocess a source file
+src/Semantic.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/Semantic.cpp.i
+.PHONY : src/Semantic.cpp.i
+
+src/Semantic.s: src/Semantic.cpp.s
+.PHONY : src/Semantic.s
+
+# target to generate assembly for a file
+src/Semantic.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\JAXAPP.dir\build.make CMakeFiles/JAXAPP.dir/src/Semantic.cpp.s
+.PHONY : src/Semantic.cpp.s
 
 src/Token.obj: src/Token.cpp.obj
 .PHONY : src/Token.obj
@@ -260,12 +308,18 @@ help:
 	@echo ... src/ASTPrinter.obj
 	@echo ... src/ASTPrinter.i
 	@echo ... src/ASTPrinter.s
+	@echo ... src/CodeGen.obj
+	@echo ... src/CodeGen.i
+	@echo ... src/CodeGen.s
 	@echo ... src/Lexer.obj
 	@echo ... src/Lexer.i
 	@echo ... src/Lexer.s
 	@echo ... src/Parser.obj
 	@echo ... src/Parser.i
 	@echo ... src/Parser.s
+	@echo ... src/Semantic.obj
+	@echo ... src/Semantic.i
+	@echo ... src/Semantic.s
 	@echo ... src/Token.obj
 	@echo ... src/Token.i
 	@echo ... src/Token.s

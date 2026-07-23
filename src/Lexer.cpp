@@ -67,6 +67,9 @@ void Lexer::scanToken()
         case '"':
             string();
             break;
+        case '=':
+            addToken(TokenType::Equal);
+            break;
 
 
         default:
@@ -197,6 +200,8 @@ TokenType Lexer::keywordType(const std::string& text) {
         return TokenType::Return;
     if (text=="if")
         return TokenType::If;
+    if (text=="string")
+        return TokenType::KeywordString;
     if (text=="else")
         return TokenType::Else;
     if (text=="while")

@@ -19,6 +19,10 @@ std::string tokenTypeToString(TokenType type) {
             return "Semicolon";
         case TokenType::EndOfFile:
             return "EOF";
+        case TokenType::Equal:
+            return "Equal";
+        case TokenType::KeywordString:
+            return "KeywordString";
         default:
             return "Unknown";
     }

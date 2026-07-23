@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 enum class TokenType {
     LeftParen,
@@ -16,7 +16,6 @@ enum class TokenType {
     Star,
     Slash,
     Percent,
-    Equal,
     EqualEqual,
     Bang,
     BangEqual,
@@ -56,7 +55,9 @@ enum class TokenType {
     StringType,
     Void,
     EndOfFile,
-    Unknown
+    Unknown,
+    KeywordString,
+    Equal
 };
 struct Token {
     TokenType type;
