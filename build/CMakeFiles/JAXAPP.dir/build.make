@@ -76,105 +76,105 @@ CMakeFiles/JAXAPP.dir/src/main.cpp.obj: CMakeFiles/JAXAPP.dir/includes_CXX.rsp
 CMakeFiles/JAXAPP.dir/src/main.cpp.obj: C:/Users/Hashir/jaxapp/Jaxapp/src/main.cpp
 CMakeFiles/JAXAPP.dir/src/main.cpp.obj: CMakeFiles/JAXAPP.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/JAXAPP.dir/src/main.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/main.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\main.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\main.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\main.cpp
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/main.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\main.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\main.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\main.cpp
 
 CMakeFiles/JAXAPP.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JAXAPP.dir/src/main.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\main.cpp > CMakeFiles\JAXAPP.dir\src\main.cpp.i
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\main.cpp > CMakeFiles\JAXAPP.dir\src\main.cpp.i
 
 CMakeFiles/JAXAPP.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JAXAPP.dir/src/main.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\main.cpp -o CMakeFiles\JAXAPP.dir\src\main.cpp.s
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\main.cpp -o CMakeFiles\JAXAPP.dir\src\main.cpp.s
 
 CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj: CMakeFiles/JAXAPP.dir/flags.make
 CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj: CMakeFiles/JAXAPP.dir/includes_CXX.rsp
 CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj: C:/Users/Hashir/jaxapp/Jaxapp/src/Lexer.cpp
 CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj: CMakeFiles/JAXAPP.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\Lexer.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\Lexer.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\Lexer.cpp
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/Lexer.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\Lexer.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\Lexer.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\Lexer.cpp
 
 CMakeFiles/JAXAPP.dir/src/Lexer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JAXAPP.dir/src/Lexer.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\Lexer.cpp > CMakeFiles\JAXAPP.dir\src\Lexer.cpp.i
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\Lexer.cpp > CMakeFiles\JAXAPP.dir\src\Lexer.cpp.i
 
 CMakeFiles/JAXAPP.dir/src/Lexer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JAXAPP.dir/src/Lexer.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\Lexer.cpp -o CMakeFiles\JAXAPP.dir\src\Lexer.cpp.s
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\Lexer.cpp -o CMakeFiles\JAXAPP.dir\src\Lexer.cpp.s
 
 CMakeFiles/JAXAPP.dir/src/Token.cpp.obj: CMakeFiles/JAXAPP.dir/flags.make
 CMakeFiles/JAXAPP.dir/src/Token.cpp.obj: CMakeFiles/JAXAPP.dir/includes_CXX.rsp
 CMakeFiles/JAXAPP.dir/src/Token.cpp.obj: C:/Users/Hashir/jaxapp/Jaxapp/src/Token.cpp
 CMakeFiles/JAXAPP.dir/src/Token.cpp.obj: CMakeFiles/JAXAPP.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/JAXAPP.dir/src/Token.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/Token.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\Token.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\Token.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\Token.cpp
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/Token.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\Token.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\Token.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\Token.cpp
 
 CMakeFiles/JAXAPP.dir/src/Token.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JAXAPP.dir/src/Token.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\Token.cpp > CMakeFiles\JAXAPP.dir\src\Token.cpp.i
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\Token.cpp > CMakeFiles\JAXAPP.dir\src\Token.cpp.i
 
 CMakeFiles/JAXAPP.dir/src/Token.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JAXAPP.dir/src/Token.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\Token.cpp -o CMakeFiles\JAXAPP.dir\src\Token.cpp.s
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\Token.cpp -o CMakeFiles\JAXAPP.dir\src\Token.cpp.s
 
 CMakeFiles/JAXAPP.dir/src/Parser.cpp.obj: CMakeFiles/JAXAPP.dir/flags.make
 CMakeFiles/JAXAPP.dir/src/Parser.cpp.obj: CMakeFiles/JAXAPP.dir/includes_CXX.rsp
 CMakeFiles/JAXAPP.dir/src/Parser.cpp.obj: C:/Users/Hashir/jaxapp/Jaxapp/src/Parser.cpp
 CMakeFiles/JAXAPP.dir/src/Parser.cpp.obj: CMakeFiles/JAXAPP.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/JAXAPP.dir/src/Parser.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/Parser.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\Parser.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\Parser.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\Parser.cpp
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/Parser.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\Parser.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\Parser.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\Parser.cpp
 
 CMakeFiles/JAXAPP.dir/src/Parser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JAXAPP.dir/src/Parser.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\Parser.cpp > CMakeFiles\JAXAPP.dir\src\Parser.cpp.i
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\Parser.cpp > CMakeFiles\JAXAPP.dir\src\Parser.cpp.i
 
 CMakeFiles/JAXAPP.dir/src/Parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JAXAPP.dir/src/Parser.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\Parser.cpp -o CMakeFiles\JAXAPP.dir\src\Parser.cpp.s
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\Parser.cpp -o CMakeFiles\JAXAPP.dir\src\Parser.cpp.s
 
 CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj: CMakeFiles/JAXAPP.dir/flags.make
 CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj: CMakeFiles/JAXAPP.dir/includes_CXX.rsp
 CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj: C:/Users/Hashir/jaxapp/Jaxapp/src/ASTPrinter.cpp
 CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj: CMakeFiles/JAXAPP.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\ASTPrinter.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\ASTPrinter.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\ASTPrinter.cpp
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\ASTPrinter.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\ASTPrinter.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\ASTPrinter.cpp
 
 CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\ASTPrinter.cpp > CMakeFiles\JAXAPP.dir\src\ASTPrinter.cpp.i
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\ASTPrinter.cpp > CMakeFiles\JAXAPP.dir\src\ASTPrinter.cpp.i
 
 CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JAXAPP.dir/src/ASTPrinter.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\ASTPrinter.cpp -o CMakeFiles\JAXAPP.dir\src\ASTPrinter.cpp.s
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\ASTPrinter.cpp -o CMakeFiles\JAXAPP.dir\src\ASTPrinter.cpp.s
 
 CMakeFiles/JAXAPP.dir/src/Semantic.cpp.obj: CMakeFiles/JAXAPP.dir/flags.make
 CMakeFiles/JAXAPP.dir/src/Semantic.cpp.obj: CMakeFiles/JAXAPP.dir/includes_CXX.rsp
 CMakeFiles/JAXAPP.dir/src/Semantic.cpp.obj: C:/Users/Hashir/jaxapp/Jaxapp/src/Semantic.cpp
 CMakeFiles/JAXAPP.dir/src/Semantic.cpp.obj: CMakeFiles/JAXAPP.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/JAXAPP.dir/src/Semantic.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/Semantic.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\Semantic.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\Semantic.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\Semantic.cpp
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/Semantic.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\Semantic.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\Semantic.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\Semantic.cpp
 
 CMakeFiles/JAXAPP.dir/src/Semantic.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JAXAPP.dir/src/Semantic.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\Semantic.cpp > CMakeFiles\JAXAPP.dir\src\Semantic.cpp.i
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\Semantic.cpp > CMakeFiles\JAXAPP.dir\src\Semantic.cpp.i
 
 CMakeFiles/JAXAPP.dir/src/Semantic.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JAXAPP.dir/src/Semantic.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\Semantic.cpp -o CMakeFiles\JAXAPP.dir\src\Semantic.cpp.s
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\Semantic.cpp -o CMakeFiles\JAXAPP.dir\src\Semantic.cpp.s
 
 CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.obj: CMakeFiles/JAXAPP.dir/flags.make
 CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.obj: CMakeFiles/JAXAPP.dir/includes_CXX.rsp
 CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.obj: C:/Users/Hashir/jaxapp/Jaxapp/src/CodeGen.cpp
 CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.obj: CMakeFiles/JAXAPP.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hashir\jaxapp\Jaxapp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\CodeGen.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\CodeGen.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\CodeGen.cpp
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.obj -MF CMakeFiles\JAXAPP.dir\src\CodeGen.cpp.obj.d -o CMakeFiles\JAXAPP.dir\src\CodeGen.cpp.obj -c C:\Users\Hashir\jaxapp\Jaxapp\src\CodeGen.cpp
 
 CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\CodeGen.cpp > CMakeFiles\JAXAPP.dir\src\CodeGen.cpp.i
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hashir\jaxapp\Jaxapp\src\CodeGen.cpp > CMakeFiles\JAXAPP.dir\src\CodeGen.cpp.i
 
 CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JAXAPP.dir/src/CodeGen.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\CodeGen.cpp -o CMakeFiles\JAXAPP.dir\src\CodeGen.cpp.s
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hashir\jaxapp\Jaxapp\src\CodeGen.cpp -o CMakeFiles\JAXAPP.dir\src\CodeGen.cpp.s
 
 # Object files for target JAXAPP
 JAXAPP_OBJECTS = \

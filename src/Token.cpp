@@ -21,8 +21,8 @@ std::string tokenTypeToString(TokenType type) {
             return "EOF";
         case TokenType::Equal:
             return "Equal";
-        case TokenType::KeywordString:
-            return "KeywordString";
+        case TokenType::StringType:
+            return "StringType";
         default:
             return "Unknown";
     }

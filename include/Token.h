@@ -56,7 +56,6 @@ enum class TokenType {
     Void,
     EndOfFile,
     Unknown,
-    KeywordString,
     Equal
 };
 struct Token {

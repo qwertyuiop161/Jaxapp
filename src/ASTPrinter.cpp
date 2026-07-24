@@ -18,6 +18,14 @@ void ASTPrinter::printStatement(
     const Statement& statement,
     int indent
 ) {
+    if (const auto* variable = dynamic_cast<const VariableDeclaration*>(&statement)) {
+        printIndent(indent);
+        std::cout<<"Variable: "<<variable->type<<" "<<variable->name<<"\n";
+        if (variable->initializer) {
+            printExpression(*variable->initializer, indent+1);
+        }
+        return;
+    }
     if (const auto* call = dynamic_cast<const FunctionCall*>(&statement)) {
         printIndent(indent);
         std::cout << "Call: " << call->name << "\n";
@@ -37,7 +45,14 @@ void ASTPrinter::printExpression(
         printIndent(indent);
         std::cout << "String: \""
                   << stringLiteral->value
-                  << "\"\n";
+                  <<"\"\n";
+        return;
+    }
+    if (const auto* identifier = dynamic_cast<const IdentifierExpression*>(&expression)) {
+        printIndent(indent);
+        std::cout << "Identifier: "
+                  << identifier->name
+                  <<"\n";
         return;
     }
     printIndent(indent);

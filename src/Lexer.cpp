@@ -201,7 +201,7 @@ TokenType Lexer::keywordType(const std::string& text) {
     if (text=="if")
         return TokenType::If;
     if (text=="string")
-        return TokenType::KeywordString;
+        return TokenType::StringType;
     if (text=="else")
         return TokenType::Else;
     if (text=="while")

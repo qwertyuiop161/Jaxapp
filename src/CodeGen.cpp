@@ -32,9 +32,19 @@ std::string CodeGenerator::generateFunction(const FunctionDeclaration& function)
     return output;
 }
 std::string CodeGenerator::generateStatement(const Statement& statement) {
+    if (const auto* variable = dynamic_cast<const VariableDeclaration*>(&statement)) {
+        if (variable->type == "string") {
+            return "std::string " +
+                variable->name +
+                " = " +
+                generateExpression(*variable->initializer) +
+                ";";
+        }
+        throw std::runtime_error("Code generation error: unsupported variable type '" + variable->type + "'.");
+    }
     if (const auto* call = dynamic_cast<const FunctionCall*>(&statement)) {
         if (call->name == "print") {
-            if (call->arguments.size() != 1) {
+            if (call-> arguments.size() != 1) {
                 throw std::runtime_error("Code generation error: print requires one argument.");
             }
             return "std::cout << " + generateExpression(*call->arguments[0]) + " << '\\n';";
@@ -46,6 +56,9 @@ std::string CodeGenerator::generateStatement(const Statement& statement) {
 std::string CodeGenerator::generateExpression(const Expression& expression) {
     if (const auto* stringLiteral = dynamic_cast<const StringLiteral*>(&expression)) {
         return "\"" + stringLiteral->value +"\"";
+    }
+    if (const auto* identifier = dynamic_cast<const IdentifierExpression*>(&expression)) {
+        return identifier->name;
     }
     throw std::runtime_error("Code generation error: unsupported expression");
 }

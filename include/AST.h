@@ -47,3 +47,8 @@ class VariableDeclaration : public Statement {
             const std::string& name,
             std::unique_ptr<Expression> initializer) : type(type), name(name), initializer(std::move(initializer)) {}
 };
+class IdentifierExpression : public Expression {
+    public:
+        std::string name;
+        IdentifierExpression(const std::string& name) : name(name) {}
+};
