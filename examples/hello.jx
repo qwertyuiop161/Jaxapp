@@ -1,4 +1,7 @@
 fn main() {
-    string message = "hello wordl";
+    helper();
+}
+fn helper() {
+    string message = "wassup twin";
     print(message);
 }

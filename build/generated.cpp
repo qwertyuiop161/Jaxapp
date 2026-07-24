@@ -1,10 +1,17 @@
 #include <iostream>
 #include <string>
 
+void helper();
+
 int main()
 {
-    std::string message = "hello wordl";
-    std::cout << message << '\n';
+    helper();
     return 0;
+}
+
+void helper()
+{
+    std::string message = "wassup twin";
+    std::cout << message << '\n';
 }
 
