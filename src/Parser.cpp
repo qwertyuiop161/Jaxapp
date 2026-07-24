@@ -92,7 +92,7 @@ Parser::functionDeclaration() {
     return function;
 }
 std::unique_ptr<Statement> Parser::statement() {
-    if (check(TokenType::StringType) || check(TokenType::StringType)) {
+    if (check(TokenType::StringType) || check(TokenType::Int)) {
         return variableDeclaration();
     }if (check(TokenType::Identifier)) {
         return functionCall();
@@ -109,14 +109,15 @@ std::unique_ptr<Statement> Parser::statement() {
 
 std::unique_ptr<Statement>
 Parser::variableDeclaration() {
+    std::string type;
     if (
-        !match(TokenType::StringType) &&
-        !match(TokenType::StringType)
+        match(TokenType::StringType)
     ) {
-        throw std::runtime_error(
-            "Expected variable type at line " +
-            std::to_string(peek().line)
-        );
+        type="string";
+    } else if (match(TokenType::Int)) {
+        type = "int";
+    } else {
+        throw std::runtime_error("Expected variable type at line " + std::to_string(peek().line));
     }
 
     const Token& name = consume(
@@ -137,7 +138,7 @@ Parser::variableDeclaration() {
     );
 
     return std::make_unique<VariableDeclaration>(
-        "string",
+        type,
         name.lexeme,
         std::move(initializer)
     );
@@ -180,22 +181,15 @@ std::unique_ptr<Expression> Parser::expression() {
 
 std::unique_ptr<Expression> Parser::primary() {
     if (match(TokenType::String)) {
-        return std::make_unique<StringLiteral>(
-            previous().lexeme
+        return std::make_unique<StringLiteral>(previous().lexeme);
+    }
+    if (match(TokenType::Integer)) {
+        return std::make_unique<IntegerLiteral>(
+            std::stoi(previous().lexeme)
         );
     }
-
     if (match(TokenType::Identifier)) {
-        return std::make_unique<IdentifierExpression>(
-            previous().lexeme
-        );
+        return std::make_unique<IdentifierExpression>(previous().lexeme);
     }
-
-    throw std::runtime_error(
-        "Expected expression at line " +
-        std::to_string(peek().line) +
-        ". Found token: '" +
-        peek().lexeme +
-        "'"
-    );
+    throw std::runtime_error("Expected expression at line " + std::to_string(peek().line));
 }

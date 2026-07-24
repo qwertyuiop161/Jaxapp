@@ -1,7 +1,4 @@
 fn main() {
-    helper();
-}
-fn helper() {
-    string message = "wassup twin";
-    print(message);
+    int age = 14;
+    print(age);
 }

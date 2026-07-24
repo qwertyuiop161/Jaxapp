@@ -68,6 +68,9 @@ std::string SemanticAnalyzer::analyzeExpression(const Expression& expression) {
     if (dynamic_cast<const StringLiteral*>(&expression)) {
         return "string";
     }
+    if (dynamic_cast<const IntegerLiteral*>(&expression)) {
+        return "int";
+    }
     if (const auto* identifier = dynamic_cast<const IdentifierExpression*>(&expression)) {
         const auto variable = variables.find(identifier->name);
         if (variable == variables.end()) {

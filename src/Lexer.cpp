@@ -174,7 +174,11 @@ void Lexer::identifier() {
     addToken(type);
 }
 void Lexer::number() {
-
+    while (isDigit(peek())) {
+        advance();
+    }
+    const std::string value = source.substr(start, current-start);
+    addToken(TokenType::Integer, value);
 }
 void Lexer::string() {
     while (peek() != '"' && !isAtEnd()) {
@@ -202,6 +206,8 @@ TokenType Lexer::keywordType(const std::string& text) {
         return TokenType::If;
     if (text=="string")
         return TokenType::StringType;
+    if (text=="int")
+        return TokenType::Int;
     if (text=="else")
         return TokenType::Else;
     if (text=="while")

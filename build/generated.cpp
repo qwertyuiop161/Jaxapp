@@ -1,17 +1,11 @@
 #include <iostream>
 #include <string>
 
-void helper();
 
 int main()
 {
-    helper();
+    int age = 14;
+    std::cout << age << '\n';
     return 0;
-}
-
-void helper()
-{
-    std::string message = "wassup twin";
-    std::cout << message << '\n';
 }
 

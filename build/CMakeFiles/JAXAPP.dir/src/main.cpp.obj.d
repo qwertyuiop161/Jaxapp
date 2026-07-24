@@ -213,6 +213,9 @@ CMakeFiles/JAXAPP.dir/src/main.cpp.obj: \
  C:/msys64/mingw64/include/c++/16.1.0/pstl/glue_memory_defs.h \
  C:/msys64/mingw64/include/c++/16.1.0/pstl/execution_defs.h \
  C:/Users/Hashir/jaxapp/Jaxapp/include/AST.h \
+ C:/msys64/mingw64/include/c++/16.1.0/utility \
+ C:/msys64/mingw64/include/c++/16.1.0/bits/stl_relops.h \
+ C:/msys64/mingw64/include/c++/16.1.0/bits/intcmp.h \
  C:/Users/Hashir/jaxapp/Jaxapp/include/ASTPrinter.h \
  C:/Users/Hashir/jaxapp/Jaxapp/include/Semantic.h \
  C:/msys64/mingw64/include/c++/16.1.0/unordered_map \

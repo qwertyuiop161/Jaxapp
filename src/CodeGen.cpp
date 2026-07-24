@@ -54,10 +54,16 @@ std::string CodeGenerator::generateFunction(
 }
 std::string CodeGenerator::generateStatement(const Statement& statement) {
     if (const auto* variable = dynamic_cast<const VariableDeclaration*>(&statement)) {
-        if (variable->type!="string") {
+        std::string cppType;
+
+        if (variable->type=="string") {
+            cppType="std::string";
+        } else if (variable->type == "int") {
+            cppType="int";
+        } else {
             throw std::runtime_error("Code generation error: unsupported variable type '" + variable->type + "'.");
         }
-        return "std::string " + variable->name + " = " + generateExpression(*variable->initializer) + ";";
+        return cppType + " " + variable->name + " = " + generateExpression(*variable->initializer) + ";";
     }
     if (const auto* call =
             dynamic_cast<const FunctionCall*>(&statement)) {
@@ -94,6 +100,9 @@ std::string CodeGenerator::generateExpression(
     if (const auto* stringLiteral =
             dynamic_cast<const StringLiteral*>(&expression)) {
         return "\"" + stringLiteral->value + "\"";
+    }
+    if (const auto* integerLiteral = dynamic_cast<const IntegerLiteral*>(&expression)) {
+        return std::to_string(integerLiteral->value);
     }
 
     if (const auto* identifier =

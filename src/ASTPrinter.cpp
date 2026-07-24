@@ -48,6 +48,12 @@ void ASTPrinter::printExpression(
                   <<"\"\n";
         return;
     }
+    if (const auto* integerLiteral = dynamic_cast<const IntegerLiteral*>(&expression)) {
+        printIndent(indent);
+        std::cout << "Integer: "
+                  << integerLiteral->value
+                  << "\n";
+    }
     if (const auto* identifier = dynamic_cast<const IdentifierExpression*>(&expression)) {
         printIndent(indent);
         std::cout << "Identifier: "
