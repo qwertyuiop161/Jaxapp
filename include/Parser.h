@@ -36,5 +36,7 @@ class Parser {
         std::unique_ptr<Statement> functionCall();
 
         std::unique_ptr<Expression> expression();
+        std::unique_ptr<Expression> addition();
+        std::unique_ptr<Expression> multiplication();
         std::unique_ptr<Expression> primary();
 };

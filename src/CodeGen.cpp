@@ -109,7 +109,9 @@ std::string CodeGenerator::generateExpression(
             dynamic_cast<const IdentifierExpression*>(&expression)) {
         return identifier->name;
     }
-
+    if (const auto* binary = dynamic_cast<const BinaryExpression*>(&expression)) {
+        return "(" + generateExpression(*binary->left) + " " + binary->operation + " " + generateExpression(*binary->right) + ")";
+    }
     throw std::runtime_error(
         "Code generation error: unsupported expression."
     );

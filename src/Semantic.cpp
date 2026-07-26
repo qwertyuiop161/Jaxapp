@@ -78,5 +78,13 @@ std::string SemanticAnalyzer::analyzeExpression(const Expression& expression) {
         }
         return variable->second;
     }
+    if (const auto* binary = dynamic_cast<const BinaryExpression*>(&expression)) {
+        const std::string leftType = analyzeExpression(*binary->left);
+        const std::string rightType = analyzeExpression(*binary->right);
+        if (leftType!="int"||rightType!="int") {
+            throw std::runtime_error("Semantic error: operator '" + binary->operation + "' requires integer operands.");
+        }
+        return "int";
+    }
     throw std::runtime_error("Semantic error: unsupported expression.");
 }

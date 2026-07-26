@@ -174,11 +174,6 @@ std::unique_ptr<Statement> Parser::functionCall() {
 
     return call;
 }
-
-std::unique_ptr<Expression> Parser::expression() {
-    return primary();
-}
-
 std::unique_ptr<Expression> Parser::primary() {
     if (match(TokenType::String)) {
         return std::make_unique<StringLiteral>(previous().lexeme);
@@ -192,4 +187,29 @@ std::unique_ptr<Expression> Parser::primary() {
         return std::make_unique<IdentifierExpression>(previous().lexeme);
     }
     throw std::runtime_error("Expected expression at line " + std::to_string(peek().line));
+}
+
+std::unique_ptr<Expression> Parser::expression() {
+    return addition();
+}
+
+std::unique_ptr<Expression> Parser::addition() {
+    auto expression = multiplication();
+    while (match(TokenType::Plus) || match(TokenType::Minus)) {
+        const std::string operation = previous().lexeme;
+        auto right = multiplication();
+        expression = std::make_unique<BinaryExpression>(std::move(expression), operation, std::move(right));
+    }
+    return expression;
+}
+
+std::unique_ptr<Expression> Parser::multiplication() {
+    auto expression = primary();
+
+    while (match(TokenType::Star) || match(TokenType::Slash) || match(TokenType::Percent)) {
+        const std::string operation = previous().lexeme;
+        auto right = primary();
+        expression = std::make_unique<BinaryExpression>(std::move(expression), operation, std::move(right));
+    }
+    return expression;
 }

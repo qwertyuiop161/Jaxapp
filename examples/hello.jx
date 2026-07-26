@@ -1,4 +1,4 @@
 fn main() {
-    int age = 14;
-    print(age);
+    int result = 10+4*2;
+    print(result);
 }

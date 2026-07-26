@@ -70,3 +70,16 @@ class Program : public ASTNode {
         std::vector<std::unique_ptr<FunctionDeclaration>> functions;
 };
 
+class BinaryExpression : public Expression {
+    public:
+        std::unique_ptr<Expression> left;
+        std::string operation;
+        std::unique_ptr<Expression> right;
+
+        BinaryExpression(
+            std::unique_ptr<Expression> left,
+            const std::string& operation,
+            std::unique_ptr<Expression> right
+        ) : left(std::move(left)), operation(operation), right(std::move(right))
+        {}
+};

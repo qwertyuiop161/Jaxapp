@@ -62,6 +62,15 @@ void ASTPrinter::printExpression(
         return;
     }
     printIndent(indent);
+    if (const auto* binary = dynamic_cast<const BinaryExpression*>(&expression)) {
+        printIndent(indent);
+        std::cout << "Binary: "
+                  << binary->operation
+                  << "\n";
+        printExpression(*binary->left, indent+1);
+        printExpression(*binary->right,indent+1);
+        return;
+    }
     std::cout << "Unknown expression\n";
 }
 void ASTPrinter::printIndent(int indent) {
