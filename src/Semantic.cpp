@@ -46,6 +46,17 @@ void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
         variables.emplace(variable->name, variable->type);
         return;
     }
+    if (const auto* assignment = dynamic_cast<const AssignmentStatement*>(&statement)) {
+        const auto variable = variables.find(assignment->name);
+        if (variable == variables.end()) {
+            throw std::runtime_error("Semantic error: undefined variable '" + assignment->name+"'.");
+        }
+        const std::string valueType = analyzeExpression(*assignment->value);
+        if (valueType!=variable->second) {
+            throw std::runtime_error("Semantic error: cannot assign expression of type '" + valueType + "' to variable '" + assignment->name + "' of type '" + variable->second + "'.");
+        }
+        return;
+    }
     if (const auto* call = dynamic_cast<const FunctionCall*>(&statement)) {
         if (call->name=="print") {
             if (call->arguments.size()!=1) {

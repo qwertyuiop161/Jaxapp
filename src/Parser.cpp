@@ -94,17 +94,14 @@ Parser::functionDeclaration() {
 std::unique_ptr<Statement> Parser::statement() {
     if (check(TokenType::StringType) || check(TokenType::Int)) {
         return variableDeclaration();
-    }if (check(TokenType::Identifier)) {
+    }
+    if (check(TokenType::Identifier)) {
+        if(current+1<tokens.size()&&tokens[current+1].type == TokenType::Equal) {
+            return assignmentStatement();
+        }
         return functionCall();
     }
-
-    throw std::runtime_error(
-        "Unexpected statement at line " +
-        std::to_string(peek().line) +
-        ". Found token: '" +
-        peek().lexeme +
-        "'"
-    );
+    throw std::runtime_error("Unexpected statement at line " + std::to_string(peek().line));
 }
 
 std::unique_ptr<Statement>
@@ -186,6 +183,11 @@ std::unique_ptr<Expression> Parser::primary() {
     if (match(TokenType::Identifier)) {
         return std::make_unique<IdentifierExpression>(previous().lexeme);
     }
+    if (match(TokenType::LeftParen)) {
+        auto expressionInside = expression();
+        consume(TokenType::RightParen, "Expected ')' after expression");
+        return expressionInside;
+    }
     throw std::runtime_error("Expected expression at line " + std::to_string(peek().line));
 }
 
@@ -212,4 +214,14 @@ std::unique_ptr<Expression> Parser::multiplication() {
         expression = std::make_unique<BinaryExpression>(std::move(expression), operation, std::move(right));
     }
     return expression;
+}
+std::unique_ptr<Statement> Parser::assignmentStatement() {
+    const Token& name = consume(TokenType::Identifier, "Expected variable name");
+    consume(TokenType::Equal, "Expected '=' after variable name");
+    auto value = expression();
+    consume(TokenType::Semicolon, "Expected ';' after assignment");
+    return std::make_unique<AssignmentStatement> (
+        name.lexeme,
+        std::move(value)
+    );
 }

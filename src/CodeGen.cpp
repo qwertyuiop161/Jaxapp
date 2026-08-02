@@ -65,6 +65,9 @@ std::string CodeGenerator::generateStatement(const Statement& statement) {
         }
         return cppType + " " + variable->name + " = " + generateExpression(*variable->initializer) + ";";
     }
+    if (const auto* assignment = dynamic_cast<const AssignmentStatement*>(&statement)) {
+        return assignment->name + " = " + generateExpression(*assignment->value) + ";";
+    }
     if (const auto* call =
             dynamic_cast<const FunctionCall*>(&statement)) {
         if (call->name == "print") {

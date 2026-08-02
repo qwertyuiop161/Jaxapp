@@ -4,8 +4,9 @@
 
 int main()
 {
-    int result = (10 + (4 * 2));
-    std::cout << result << '\n';
+    int score = 10;
+    score = (score + (5 * 2));
+    std::cout << score << '\n';
     return 0;
 }
 

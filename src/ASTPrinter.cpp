@@ -26,6 +26,14 @@ void ASTPrinter::printStatement(
         }
         return;
     }
+    if (const auto* assignment = dynamic_cast<const AssignmentStatement*>(&statement)) {
+        printIndent(indent);
+        std::cout<<"Assignment: "
+                 << assignment->name
+                 <<"\n";
+        printExpression(*assignment->value, indent+1);
+        return;
+    }
     if (const auto* call = dynamic_cast<const FunctionCall*>(&statement)) {
         printIndent(indent);
         std::cout << "Call: " << call->name << "\n";

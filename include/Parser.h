@@ -34,6 +34,7 @@ class Parser {
         std::unique_ptr<Statement> statement();
         std::unique_ptr<Statement> variableDeclaration();
         std::unique_ptr<Statement> functionCall();
+        std::unique_ptr<Statement> assignmentStatement();
 
         std::unique_ptr<Expression> expression();
         std::unique_ptr<Expression> addition();
