@@ -61,6 +61,14 @@ void ASTPrinter::printExpression(
         std::cout << "Integer: "
                   << integerLiteral->value
                   << "\n";
+        return;
+    }
+    if (const auto* booleanLiteral = dynamic_cast<const BooleanLiteral*>(&expression)) {
+        printIndent(indent);
+        std::cout << "Boolean: "
+                  << (booleanLiteral->value ? "true" : "false")
+                  << "\n";
+        return;
     }
     if (const auto* identifier = dynamic_cast<const IdentifierExpression*>(&expression)) {
         printIndent(indent);

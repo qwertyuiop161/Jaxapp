@@ -79,6 +79,9 @@ std::string SemanticAnalyzer::analyzeExpression(const Expression& expression) {
     if (dynamic_cast<const StringLiteral*>(&expression)) {
         return "string";
     }
+    if (dynamic_cast<const BooleanLiteral*>(&expression)) {
+        return "bool";
+    }
     if (dynamic_cast<const IntegerLiteral*>(&expression)) {
         return "int";
     }
@@ -92,10 +95,27 @@ std::string SemanticAnalyzer::analyzeExpression(const Expression& expression) {
     if (const auto* binary = dynamic_cast<const BinaryExpression*>(&expression)) {
         const std::string leftType = analyzeExpression(*binary->left);
         const std::string rightType = analyzeExpression(*binary->right);
-        if (leftType!="int"||rightType!="int") {
-            throw std::runtime_error("Semantic error: operator '" + binary->operation + "' requires integer operands.");
+        const std::string& op = binary->operation;
+
+        if (op=="+"||op=="-"||op=="*"||op=="/"||op=="%") {
+            if (leftType!="int"||rightType!="int") {
+                throw std::runtime_error("Semantic error: operator '" + op + "' requires integer operands.");
+            }
+            return "int";
         }
-        return "int";
+        if (op=="<"||op=="<="||op==">"||op==">=") {
+            if (leftType!="int"||rightType!="int") {
+                throw std::runtime_error("Semantic error: operator '" + op + "' requires integer operands.");
+            }
+            return "bool";
+        }
+        if (op=="=="||op=="!=") {
+            if (leftType!=rightType) {
+                throw std::runtime_error("Semantic error: operator '" + op + "' requires operands of the same type.");
+            }
+            return "bool";
+        }
+        throw std::runtime_error("Semantic error: unsupported binary operator '" + op + "'.");
     }
     throw std::runtime_error("Semantic error: unsupported expression.");
 }

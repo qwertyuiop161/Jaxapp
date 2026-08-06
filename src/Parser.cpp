@@ -95,6 +95,9 @@ std::unique_ptr<Statement> Parser::statement() {
     if (check(TokenType::StringType) || check(TokenType::Int)) {
         return variableDeclaration();
     }
+    if (check(TokenType::StringType)||check(TokenType::Int)||check(TokenType::Bool)) {
+        return variableDeclaration();
+    }
     if (check(TokenType::Identifier)) {
         if(current+1<tokens.size()&&tokens[current+1].type == TokenType::Equal) {
             return assignmentStatement();
@@ -113,6 +116,8 @@ Parser::variableDeclaration() {
         type="string";
     } else if (match(TokenType::Int)) {
         type = "int";
+    } else if (match(TokenType::Bool)) {
+        type = "bool";
     } else {
         throw std::runtime_error("Expected variable type at line " + std::to_string(peek().line));
     }
@@ -180,6 +185,12 @@ std::unique_ptr<Expression> Parser::primary() {
             std::stoi(previous().lexeme)
         );
     }
+    if (match(TokenType::True)) {
+        return std::make_unique<BooleanLiteral>(true);
+    }
+    if (match(TokenType::False)) {
+        return std::make_unique<BooleanLiteral>(false);
+    }
     if (match(TokenType::Identifier)) {
         return std::make_unique<IdentifierExpression>(previous().lexeme);
     }
@@ -192,7 +203,7 @@ std::unique_ptr<Expression> Parser::primary() {
 }
 
 std::unique_ptr<Expression> Parser::expression() {
-    return addition();
+    return equality();
 }
 
 std::unique_ptr<Expression> Parser::addition() {
@@ -224,4 +235,23 @@ std::unique_ptr<Statement> Parser::assignmentStatement() {
         name.lexeme,
         std::move(value)
     );
+}
+std::unique_ptr<Expression> Parser::equality() {
+    auto expression = comparison();
+
+    while (match(TokenType::EqualEqual)||match(TokenType::BangEqual)) {
+        const std::string operation = previous().lexeme;
+        auto right = comparison();
+        expression = std::make_unique<BinaryExpression>(std::move(expression),operation,std::move(right));
+    }
+    return expression;
+}
+std::unique_ptr<Expression> Parser::comparison() {
+    auto expression = addition();
+    while (match(TokenType::Less)||match(TokenType::LessEqual)||match(TokenType::Greater)||match(TokenType::GreaterEqual)) {
+        const std::string operation = previous().lexeme;
+        auto right = addition();
+        expression = std::make_unique<BinaryExpression>(std::move(expression),operation,std::move(right));
+    }
+    return expression;
 }

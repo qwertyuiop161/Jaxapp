@@ -26,7 +26,11 @@ class IntegerLiteral : public Expression {
         int value;
         explicit IntegerLiteral(int value) : value(value) {}
 };
-
+class BooleanLiteral : public Expression {
+    public:
+        bool value;
+        explicit BooleanLiteral(bool value) : value(value) {}
+};
 class IdentifierExpression : public Expression {
     public:
         std::string name;

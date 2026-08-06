@@ -68,10 +68,17 @@ void Lexer::scanToken()
             string();
             break;
         case '=':
-            addToken(TokenType::Equal);
+            addToken(match('=')?TokenType::EqualEqual:TokenType::Equal);
             break;
-
-
+        case '!':
+            addToken(match('=')?TokenType::BangEqual:TokenType::Bang);
+            break;
+        case '<':
+            addToken(match('=')?TokenType::LessEqual:TokenType::Less);
+            break;
+        case '>':
+            addToken(match('=')?TokenType::GreaterEqual:TokenType::Greater);
+            break;
         default:
 
             if (isAlpha(c))
@@ -214,6 +221,8 @@ TokenType Lexer::keywordType(const std::string& text) {
         return TokenType::While;
     if (text=="for")
         return TokenType::For;
+    if (text=="bool")
+        return TokenType::Bool;
     if (text=="true")
         return TokenType::True;
     if (text=="false")

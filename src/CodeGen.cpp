@@ -60,6 +60,8 @@ std::string CodeGenerator::generateStatement(const Statement& statement) {
             cppType="std::string";
         } else if (variable->type == "int") {
             cppType="int";
+        } else if (variable->type == "bool") {
+            cppType="bool";
         } else {
             throw std::runtime_error("Code generation error: unsupported variable type '" + variable->type + "'.");
         }
@@ -107,7 +109,11 @@ std::string CodeGenerator::generateExpression(
     if (const auto* integerLiteral = dynamic_cast<const IntegerLiteral*>(&expression)) {
         return std::to_string(integerLiteral->value);
     }
-
+    if (const auto* booleanLiteral = dynamic_cast<const BooleanLiteral*>(&expression)) {
+        return booleanLiteral->value
+            ?"true"
+            :"false";
+    }
     if (const auto* identifier =
             dynamic_cast<const IdentifierExpression*>(&expression)) {
         return identifier->name;
