@@ -79,6 +79,16 @@ void Lexer::scanToken()
         case '>':
             addToken(match('=')?TokenType::GreaterEqual:TokenType::Greater);
             break;
+        case '&':
+            if (match('&')) {
+                addToken(TokenType::AndAnd);
+            }
+            break;
+        case '|':
+            if (match('|')) {
+                addToken(TokenType::OrOr);
+            }
+            break;
         default:
 
             if (isAlpha(c))

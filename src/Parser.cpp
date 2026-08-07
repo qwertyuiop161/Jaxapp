@@ -203,7 +203,7 @@ std::unique_ptr<Expression> Parser::primary() {
 }
 
 std::unique_ptr<Expression> Parser::expression() {
-    return equality();
+    return logicalOr();
 }
 
 std::unique_ptr<Expression> Parser::addition() {
@@ -217,11 +217,11 @@ std::unique_ptr<Expression> Parser::addition() {
 }
 
 std::unique_ptr<Expression> Parser::multiplication() {
-    auto expression = primary();
+    auto expression = unary();
 
     while (match(TokenType::Star) || match(TokenType::Slash) || match(TokenType::Percent)) {
         const std::string operation = previous().lexeme;
-        auto right = primary();
+        auto right = unary();
         expression = std::make_unique<BinaryExpression>(std::move(expression), operation, std::move(right));
     }
     return expression;
@@ -254,4 +254,38 @@ std::unique_ptr<Expression> Parser::comparison() {
         expression = std::make_unique<BinaryExpression>(std::move(expression),operation,std::move(right));
     }
     return expression;
+}
+std::unique_ptr<Expression> Parser::logicalOr() {
+    auto expression = logicalAnd();
+    while (match(TokenType::OrOr)) {
+        const std::string operation = previous().lexeme;
+        auto right = logicalAnd();
+        expression = std::make_unique<BinaryExpression>(
+            std::move(expression),
+            operation,
+            std::move(right)
+        );
+    }
+    return expression;
+}
+std::unique_ptr<Expression> Parser::logicalAnd() {
+    auto expression = equality();
+    while (match(TokenType::AndAnd)) {
+        const std::string operation = previous().lexeme;
+        auto right = equality();
+        expression = std::make_unique<BinaryExpression>(
+            std::move(expression),
+            operation,
+            std::move(right)
+        );
+    }
+    return expression;
+}
+std::unique_ptr<Expression> Parser::unary() {
+    if (match(TokenType::Bang)) {
+        const std::string operation = previous().lexeme;
+        auto operand = unary();
+        return std::make_unique<UnaryExpression>(operation, std::move(operand));
+    }
+    return primary();
 }

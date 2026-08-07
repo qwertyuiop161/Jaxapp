@@ -1,8 +1,11 @@
 fn main() {
     int age = 14;
-    bool isTeen = age >= 13;
-    bool same = age == 14;
 
-    print(isTeen);
-    print(same);
+    bool teen = age >= 13 && age < 18;
+    bool notTeen = !teen;
+    bool allowed = teen || notTeen;
+
+    print(teen);
+    print(notTeen);
+    print(allowed);
 }

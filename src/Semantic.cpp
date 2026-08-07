@@ -115,7 +115,23 @@ std::string SemanticAnalyzer::analyzeExpression(const Expression& expression) {
             }
             return "bool";
         }
+        if (op=="&&"||op=="||") {
+            if (leftType!="bool"||rightType!="bool") {
+                throw std::runtime_error("Semantic error: operator '" + op + "' requires boolean operands.");
+            }
+            return "bool";
+        }
         throw std::runtime_error("Semantic error: unsupported binary operator '" + op + "'.");
+    }
+    if (const auto* unary = dynamic_cast<const UnaryExpression*>(&expression)) {
+        const std::string operandType = analyzeExpression(*unary->operand);
+        if (unary->operation == "!") {
+            if (operandType!="bool") {
+                throw std::runtime_error("Semantic error: operator '!' requires a boolean operand.");
+            }
+            return "bool";
+        }
+        throw std::runtime_error("Semantic error: unsupported unary operator '" + unary->operation + "'.");
     }
     throw std::runtime_error("Semantic error: unsupported expression.");
 }

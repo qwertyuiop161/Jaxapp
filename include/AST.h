@@ -87,6 +87,13 @@ class BinaryExpression : public Expression {
         ) : left(std::move(left)), operation(operation), right(std::move(right))
         {}
 };
+class UnaryExpression : public Expression {
+    public:
+        std::string operation;
+        std::unique_ptr<Expression> operand;
+
+        UnaryExpression(const std::string& operation, std::unique_ptr<Expression> operand) : operation(operation), operand(std::move(operand)) {}
+};
 class AssignmentStatement : public Statement {
     public:
         std::string name;

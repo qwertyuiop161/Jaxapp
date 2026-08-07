@@ -87,6 +87,12 @@ void ASTPrinter::printExpression(
         printExpression(*binary->right,indent+1);
         return;
     }
+    if (const auto* unary = dynamic_cast<const UnaryExpression*>(&expression)) {
+        printIndent(indent);
+        std::cout<<"Unary: "<<unary->operation<<"\n";
+        printExpression(*unary->operand,indent+1);
+        return;
+    }
     std::cout << "Unknown expression\n";
 }
 void ASTPrinter::printIndent(int indent) {

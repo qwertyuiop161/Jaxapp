@@ -37,6 +37,9 @@ class Parser {
         std::unique_ptr<Statement> assignmentStatement();
 
         std::unique_ptr<Expression> expression();
+        std::unique_ptr<Expression> logicalOr();
+        std::unique_ptr<Expression> logicalAnd();
+        std::unique_ptr<Expression> unary();
         std::unique_ptr<Expression> addition();
         std::unique_ptr<Expression> equality();
         std::unique_ptr<Expression> comparison();

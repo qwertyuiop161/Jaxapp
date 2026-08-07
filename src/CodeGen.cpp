@@ -121,6 +121,9 @@ std::string CodeGenerator::generateExpression(
     if (const auto* binary = dynamic_cast<const BinaryExpression*>(&expression)) {
         return "(" + generateExpression(*binary->left) + " " + binary->operation + " " + generateExpression(*binary->right) + ")";
     }
+    if (const auto* unary = dynamic_cast<const UnaryExpression*>(&expression)) {
+        return "(" + unary->operation + generateExpression(*unary->operand)+")";
+    }
     throw std::runtime_error(
         "Code generation error: unsupported expression."
     );
