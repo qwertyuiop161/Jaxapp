@@ -93,7 +93,20 @@ std::string CodeGenerator::generateStatement(const Statement& statement) {
 
         return call->name + "();";
     }
-
+    if (const auto* ifStatement = dynamic_cast<const IfStatement*>(&statement)) {
+        std::string output;
+        output+="if (";
+        output+=generateExpression(*ifStatement->condition);
+        output+=")\n";
+        output+="    {\n";
+        for (const auto& nestedStatement : ifStatement->thenBranch) {
+            output+="       ";
+            output+=generateStatement(*nestedStatement);
+            output+="\n";
+        }
+        output+="   }";
+        return output;
+    }
     throw std::runtime_error(
         "Code generation error: unsupported statement."
     );

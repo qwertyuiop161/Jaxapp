@@ -101,3 +101,15 @@ class AssignmentStatement : public Statement {
 
         AssignmentStatement(const std::string& name, std::unique_ptr<Expression> value) : name(name), value(std::move(value)) {}
 };
+class IfStatement : public Statement {
+    public:
+        std::unique_ptr<Expression> condition;
+        std::vector<std::unique_ptr<Statement>> thenBranch;
+
+        IfStatement(
+            std::unique_ptr<Expression> condition,
+            std::vector<std::unique_ptr<Statement>> thenBranch
+        )
+            : condition(std::move(condition)),
+            thenBranch(std::move(thenBranch)) {}
+};

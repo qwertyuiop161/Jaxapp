@@ -1,11 +1,7 @@
 fn main() {
     int age = 14;
 
-    bool teen = age >= 13 && age < 18;
-    bool notTeen = !teen;
-    bool allowed = teen || notTeen;
-
-    print(teen);
-    print(notTeen);
-    print(allowed);
+    if (age >= 13) {
+        print("teen");
+    }
 }

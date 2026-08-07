@@ -92,10 +92,10 @@ Parser::functionDeclaration() {
     return function;
 }
 std::unique_ptr<Statement> Parser::statement() {
-    if (check(TokenType::StringType) || check(TokenType::Int)) {
-        return variableDeclaration();
+    if (match(TokenType::If)) {
+        return ifStatement();
     }
-    if (check(TokenType::StringType)||check(TokenType::Int)||check(TokenType::Bool)) {
+    if (check(TokenType::StringType) || check(TokenType::Int) || check(TokenType::Bool)) {
         return variableDeclaration();
     }
     if (check(TokenType::Identifier)) {
@@ -288,4 +288,35 @@ std::unique_ptr<Expression> Parser::unary() {
         return std::make_unique<UnaryExpression>(operation, std::move(operand));
     }
     return primary();
+}
+std::unique_ptr<Statement> Parser::ifStatement() {
+    consume(
+        TokenType::LeftParen,
+        "Expected '(' after 'if'"
+    );
+    auto condition = expression();
+    consume(
+        TokenType::RightParen,
+        "Expected ')' after if condition"
+    );
+    consume(
+        TokenType::LeftBrace,
+        "Exoected '{' before if body"
+    );
+    std::vector<std::unique_ptr<Statement>> body;
+
+    while (
+        !check(TokenType::RightBrace) &&
+        !isAtEnd()
+    ) {
+        body.push_back(statement());
+    }
+    consume(
+        TokenType::RightBrace,
+        "Expected '}' after if body"
+    );
+    return std::make_unique<IfStatement>(
+        std::move(condition),
+        std::move(body)
+    );
 }

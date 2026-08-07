@@ -42,6 +42,19 @@ void ASTPrinter::printStatement(
         }
         return;
     }
+    if (const auto* ifStatement = dynamic_cast<const IfStatement*>(&statement)) {
+        printIndent(indent);
+        std::cout<<"If\n";
+        printIndent(indent+1);
+        std::cout<<"Condition: \n";
+        printExpression(*ifStatement->condition,indent+2);
+        printIndent(indent+1);
+        std::cout<<"Then:\n";
+        for (const auto& nestedStatement : ifStatement->thenBranch) {
+            printStatement(*nestedStatement, indent+2);
+        }
+        return;
+    }
     printIndent(indent);
     std::cout << "Unknown statement\n";
 }

@@ -73,6 +73,16 @@ void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
         }
         return;
     }
+    if (const auto* ifStatement = dynamic_cast<const IfStatement*>(&statement)) {
+        const std::string conditionType = analyzeExpression(*ifStatement->condition);
+        if (conditionType!="bool") {
+            throw std::runtime_error("Semantic error: if condition must be bool.");
+        }
+        for (const auto& nestedStatement : ifStatement->thenBranch) {
+            analyzeStatement(*nestedStatement);
+        }
+        return;
+    }
     throw std::runtime_error("Semantic error: unknown statement.");
 }
 std::string SemanticAnalyzer::analyzeExpression(const Expression& expression) {
