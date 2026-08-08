@@ -294,29 +294,51 @@ std::unique_ptr<Statement> Parser::ifStatement() {
         TokenType::LeftParen,
         "Expected '(' after 'if'"
     );
+
     auto condition = expression();
+
     consume(
         TokenType::RightParen,
         "Expected ')' after if condition"
     );
+
     consume(
         TokenType::LeftBrace,
-        "Exoected '{' before if body"
+        "Expected '{' before if body"
     );
-    std::vector<std::unique_ptr<Statement>> body;
 
-    while (
-        !check(TokenType::RightBrace) &&
-        !isAtEnd()
-    ) {
-        body.push_back(statement());
+    std::vector<std::unique_ptr<Statement>> thenBranch;
+
+    while (!check(TokenType::RightBrace) && !isAtEnd()) {
+        thenBranch.push_back(statement());
     }
+
     consume(
         TokenType::RightBrace,
         "Expected '}' after if body"
     );
+    
+    std::vector<std::unique_ptr<Statement>> elseBranch;
+
+    if (match(TokenType::Else)) {
+        consume(
+            TokenType::LeftBrace,
+            "Expected '{' before else body"
+        );
+
+        while (!check(TokenType::RightBrace) && !isAtEnd()) {
+            elseBranch.push_back(statement());
+        }
+
+        consume(
+            TokenType::RightBrace,
+            "Expected '}' after else body"
+        );
+    }
+
     return std::make_unique<IfStatement>(
         std::move(condition),
-        std::move(body)
+        std::move(thenBranch),
+        std::move(elseBranch)
     );
 }

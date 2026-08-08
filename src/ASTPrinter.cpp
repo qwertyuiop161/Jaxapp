@@ -53,6 +53,13 @@ void ASTPrinter::printStatement(
         for (const auto& nestedStatement : ifStatement->thenBranch) {
             printStatement(*nestedStatement, indent+2);
         }
+        if (!ifStatement->elseBranch.empty()) {
+            printIndent(indent+1);
+            std::cout<<"Else:\n";
+            for (const auto& nestedStatement : ifStatement->elseBranch) {
+                printStatement(*nestedStatement,indent+2);
+            }
+        }
         return;
     }
     printIndent(indent);

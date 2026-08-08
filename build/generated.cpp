@@ -4,10 +4,14 @@
 
 int main()
 {
-    int age = 14;
-    if ((age >= 13))
-    {
-       std::cout << "teen" << '\n';
+    int isItOne = 1;
+    if ((isItOne == 1))
+   {
+       std::cout << "IS IT ONE!!!" << '\n';
+   }
+   else
+   {
+       std::cout << "is is not one :(((" << '\n';
    }
     return 0;
 }

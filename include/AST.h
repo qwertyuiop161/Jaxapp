@@ -105,11 +105,14 @@ class IfStatement : public Statement {
     public:
         std::unique_ptr<Expression> condition;
         std::vector<std::unique_ptr<Statement>> thenBranch;
+        std::vector<std::unique_ptr<Statement>> elseBranch;
 
         IfStatement(
             std::unique_ptr<Expression> condition,
-            std::vector<std::unique_ptr<Statement>> thenBranch
+            std::vector<std::unique_ptr<Statement>> thenBranch,
+            std::vector<std::unique_ptr<Statement>> elseBranch
         )
             : condition(std::move(condition)),
-            thenBranch(std::move(thenBranch)) {}
+              thenBranch(std::move(thenBranch)),
+              elseBranch(std::move(elseBranch)) {}
 };

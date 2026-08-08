@@ -98,13 +98,24 @@ std::string CodeGenerator::generateStatement(const Statement& statement) {
         output+="if (";
         output+=generateExpression(*ifStatement->condition);
         output+=")\n";
-        output+="    {\n";
+        output+="   {\n";
         for (const auto& nestedStatement : ifStatement->thenBranch) {
             output+="       ";
             output+=generateStatement(*nestedStatement);
             output+="\n";
         }
         output+="   }";
+        if (!ifStatement->elseBranch.empty()) {
+            output+="\n";
+            output+="   else\n";
+            output+="   {\n";
+            for (const auto& nestedStatement : ifStatement->elseBranch) {
+                output+="       ";
+                output+=generateStatement(*nestedStatement);
+                output+="\n";
+            }
+            output+="   }";
+        }
         return output;
     }
     throw std::runtime_error(

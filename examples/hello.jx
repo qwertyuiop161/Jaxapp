@@ -1,7 +1,9 @@
 fn main() {
-    int age = 14;
+    int isItOne = 1;
 
-    if (age >= 13) {
-        print("teen");
+    if (isItOne == 1) {
+        print("IS IT ONE!!!");
+    } else {
+        print("is is not one :(((");
     }
 }
