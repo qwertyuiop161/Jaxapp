@@ -105,6 +105,7 @@ class IfStatement : public Statement {
     public:
         std::unique_ptr<Expression> condition;
         std::vector<std::unique_ptr<Statement>> thenBranch;
+        std::vector<std::unique_ptr<Statement>> elseIfBranch;
         std::vector<std::unique_ptr<Statement>> elseBranch;
 
         IfStatement(

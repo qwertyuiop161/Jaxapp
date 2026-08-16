@@ -1,9 +1,7 @@
 fn main() {
-    int isItOne = 1;
-
-    if (isItOne == 1) {
-        print("IS IT ONE!!!");
-    } else {
-        print("is is not one :(((");
+    if (true) {
+        int x = 5;
     }
+
+    print(x);
 }

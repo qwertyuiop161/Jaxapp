@@ -1,7 +1,31 @@
 ﻿#include "Semantic.h"
 
 #include <stdexcept>
-
+void SemanticAnalyzer::beginScope() {
+    scopes.emplace_back();
+}
+void SemanticAnalyzer::endScope() {
+    scopes.pop_back();
+}
+void SemanticAnalyzer::declareVariable(const std::string& name,const std::string& type) {
+    if (scopes.empty()) {
+        beginScope();
+    }
+    auto& currentScope = scopes.back();
+    if (currentScope.contains(name)) {
+        throw std::runtime_error("Semantic error: variable '" + name + "' is already declared in this scope.");
+    }
+    currentScope.emplace(name, type);
+}
+const std::string* SemanticAnalyzer::findVariable(const std::string& name) const {
+    for (auto it = scopes.rbegin(); it!=scopes.rend(); ++it) {
+        const auto found = it->find(name);
+        if (found!=it->end()) {
+            return &found->second;
+        }
+    }
+    return nullptr;
+}
 void SemanticAnalyzer::analyze(const Program& program) {
     bool foundMain = false;
     functions.clear();
@@ -26,16 +50,15 @@ void SemanticAnalyzer::analyze(const Program& program) {
     }
 }
 void SemanticAnalyzer::analyzeFunction(const FunctionDeclaration& function) {
-    variables.clear();
+    scopes.clear();
+    beginScope();
     for (const auto& statement : function.body) {
         analyzeStatement(*statement);
     }
+    endScope();
 }
 void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
     if (const auto* variable = dynamic_cast<const VariableDeclaration*>(&statement)) {
-        if (variables.contains(variable->name)) {
-            throw std::runtime_error("Semantic error: variable '" + variable->name + "' is already declared.");
-        }
         if (!variable->initializer) {
             throw std::runtime_error("Semantic error: variable'" + variable->name + "' requires an initialier.");
         }
@@ -43,17 +66,18 @@ void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
         if (initializerType!=variable->type) {
             throw std::runtime_error("Semantic error: cannot initialize variable '" + variable->name + "' of type '" + variable->type + "' with an expression of type '" + initializerType + "'.");
         }
-        variables.emplace(variable->name, variable->type);
+        declareVariable(variable->name,variable->type);
         return;
     }
     if (const auto* assignment = dynamic_cast<const AssignmentStatement*>(&statement)) {
-        const auto variable = variables.find(assignment->name);
-        if (variable == variables.end()) {
+        const std::string* variableType=findVariable(assignment->name);
+
+        if (variableType == nullptr) {
             throw std::runtime_error("Semantic error: undefined variable '" + assignment->name+"'.");
         }
         const std::string valueType = analyzeExpression(*assignment->value);
-        if (valueType!=variable->second) {
-            throw std::runtime_error("Semantic error: cannot assign expression of type '" + valueType + "' to variable '" + assignment->name + "' of type '" + variable->second + "'.");
+        if (valueType!=*variableType) {
+            throw std::runtime_error("Semantic error: cannot assign expression of type '" + valueType + "' to variable '" + assignment->name + "' of type '" + *variableType + "'.");
         }
         return;
     }
@@ -79,11 +103,17 @@ void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
         if (conditionType!="bool") {
             throw std::runtime_error("Semantic error: if condition must be bool.");
         }
+        beginScope();
         for (const auto& nestedStatement : ifStatement->thenBranch) {
             analyzeStatement(*nestedStatement);
         }
-        for (const auto& nestedStatement : ifStatement->elseBranch) {
-            analyzeStatement(*nestedStatement);
+        endScope();
+        if (!ifStatement->elseBranch.empty()) {
+            beginScope();
+            for (const auto& nestedStatement : ifStatement->elseBranch) {
+                analyzeStatement(*nestedStatement);
+            }
+            endScope();
         }
         return;
     }
@@ -100,11 +130,11 @@ std::string SemanticAnalyzer::analyzeExpression(const Expression& expression) {
         return "int";
     }
     if (const auto* identifier = dynamic_cast<const IdentifierExpression*>(&expression)) {
-        const auto variable = variables.find(identifier->name);
-        if (variable == variables.end()) {
-            throw std::runtime_error("Semantic error: undefined variable '" + identifier-> name + "'.");
+        const std::string* variableType = findVariable(identifier->name);
+        if (variableType==nullptr) {
+            throw std::runtime_error("Semantic error: undefined variable '" + identifier->name + "'.");
         }
-        return variable->second;
+        return *variableType;
     }
     if (const auto* binary = dynamic_cast<const BinaryExpression*>(&expression)) {
         const std::string leftType = analyzeExpression(*binary->left);
