@@ -62,6 +62,19 @@ void ASTPrinter::printStatement(
         }
         return;
     }
+    if (const auto* whileStatement = dynamic_cast<const WhileStatement*>(&statement)) {
+        printIndent(indent);
+        std::cout << "While\n";
+        printIndent(indent+1);
+        std::cout<<"Condition:\n";
+        printExpression(*whileStatement->condition, indent+2);
+        printIndent(indent+1);
+        std::cout<<"Body:\n";
+        for (const auto& nestedStatement : whileStatement->body) {
+            printStatement(*nestedStatement, indent+2);
+        }
+        return;
+    }
     printIndent(indent);
     std::cout << "Unknown statement\n";
 }

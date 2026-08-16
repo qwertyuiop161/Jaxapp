@@ -118,6 +118,20 @@ std::string CodeGenerator::generateStatement(const Statement& statement) {
         }
         return output;
     }
+    if (const auto* whileStatement = dynamic_cast<const WhileStatement*>(&statement)) {
+        std::string output;
+        output+="while (";
+        output+=generateExpression(*whileStatement->condition);
+        output+=")\n";
+        output+="   {\n";
+        for (const auto& nestedStatement : whileStatement->body) {
+            output+="       ";
+            output+=generateStatement(*nestedStatement);
+            output+="\n";
+        }
+        output+="   }";
+        return output;
+    }
     throw std::runtime_error(
         "Code generation error: unsupported statement."
     );

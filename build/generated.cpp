@@ -4,14 +4,11 @@
 
 int main()
 {
-    int isItOne = 1;
-    if ((isItOne == 1))
+    int x = 0;
+    while ((x < 5))
    {
-       std::cout << "IS IT ONE!!!" << '\n';
-   }
-   else
-   {
-       std::cout << "is is not one :(((" << '\n';
+       std::cout << x << '\n';
+       x = (x + 1);
    }
     return 0;
 }

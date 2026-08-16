@@ -95,6 +95,9 @@ std::unique_ptr<Statement> Parser::statement() {
     if (match(TokenType::If)) {
         return ifStatement();
     }
+    if (match(TokenType::While)) {
+        return whileStatement();
+    }
     if (check(TokenType::StringType) || check(TokenType::Int) || check(TokenType::Bool)) {
         return variableDeclaration();
     }
@@ -341,4 +344,17 @@ std::unique_ptr<Statement> Parser::ifStatement() {
         std::move(thenBranch),
         std::move(elseBranch)
     );
+}
+std::unique_ptr<Statement> Parser::whileStatement() {
+    consume(TokenType::LeftParen, "Expected '(' after 'while'");
+    auto condition = expression();
+    consume(TokenType::RightParen, "Expected ')' after while condition");
+    consume(TokenType::LeftBrace, "Expected '{' before while body");
+    std::vector<std::unique_ptr<Statement>> body;
+    while (!check(TokenType::RightBrace)&&!isAtEnd()) {
+        body.push_back(statement());
+    }
+    consume(TokenType::RightBrace, "Expected '}' after while body");
+
+    return std::make_unique<WhileStatement>(std::move(condition), std::move(body));
 }

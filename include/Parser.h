@@ -33,6 +33,7 @@ class Parser {
 
         std::unique_ptr<Statement> statement();
         std::unique_ptr<Statement> variableDeclaration();
+        std::unique_ptr<Statement> whileStatement();
         std::unique_ptr<Statement> functionCall();
         std::unique_ptr<Statement> ifStatement();
         std::unique_ptr<Statement> assignmentStatement();

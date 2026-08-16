@@ -117,6 +117,18 @@ void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
         }
         return;
     }
+    if (const auto* whileStatement = dynamic_cast<const WhileStatement*>(&statement)) {
+        const std::string conditionType = analyzeExpression(*whileStatement->condition);
+        if (conditionType!="bool") {
+            throw std::runtime_error("Semantic error: while condition must be bool");
+        }
+        beginScope();
+        for (const auto& nestedStatement : whileStatement->body) {
+            analyzeStatement(*nestedStatement);
+        }
+        endScope();
+        return;
+    }
     throw std::runtime_error("Semantic error: unknown statement.");
 }
 std::string SemanticAnalyzer::analyzeExpression(const Expression& expression) {
