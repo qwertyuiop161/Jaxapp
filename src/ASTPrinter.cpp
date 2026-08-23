@@ -75,6 +75,29 @@ void ASTPrinter::printStatement(
         }
         return;
     }
+    if (const auto* forStatement = dynamic_cast<const ForStatement*>(&statement)) {
+        printIndent(indent);
+        std::cout<<"For\n";
+        printIndent(indent+1);
+        std::cout<<"Initalizer:\n";
+        if (forStatement->initializer) {
+            printStatement(*forStatement->initializer, indent+2);
+        }
+        printIndent(indent+2);
+        std::cout<<"Condition:\n";
+        printExpression(*forStatement->condition,indent+2);
+        printIndent(indent+1);
+        std::cout<<"Increment:\n";
+        if (forStatement->increment) {
+            printStatement(*forStatement->increment,indent+2);
+        }
+        printIndent(indent+1);
+        std::cout<<"Body:\n";
+        for (const auto& nestedStatement : forStatement->body) {
+            printStatement(*nestedStatement,indent+2);
+        }
+        return;
+    }
     printIndent(indent);
     std::cout << "Unknown statement\n";
 }

@@ -129,6 +129,25 @@ void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
         endScope();
         return;
     }
+    if (const auto* forStatement = dynamic_cast<const ForStatement*>(&statement)) {
+        beginScope();
+        if (forStatement->initializer) {
+            analyzeStatement(*forStatement->initializer);
+        }
+        const std::string conditionType = analyzeExpression(*forStatement->condition);
+        if(conditionType!="bool") {
+            endScope();
+            throw std::runtime_error("Semantic error: for condition must be bool.");
+        }
+        for (const auto& nestedStatement : forStatement->body) {
+            analyzeStatement(*nestedStatement);
+        }
+        if (forStatement->increment) {
+            analyzeStatement(*forStatement->increment);
+        }
+        endScope();
+        return;
+    }
     throw std::runtime_error("Semantic error: unknown statement.");
 }
 std::string SemanticAnalyzer::analyzeExpression(const Expression& expression) {

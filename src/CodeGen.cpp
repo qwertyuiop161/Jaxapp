@@ -132,6 +132,32 @@ std::string CodeGenerator::generateStatement(const Statement& statement) {
         output+="   }";
         return output;
     }
+    if (const auto* forStatement = dynamic_cast<const ForStatement*>(&statement)) {
+        std::string output;
+        std::string initializer = generateStatement(*forStatement->initializer);
+        if (!initializer.empty() && initializer.back() == ';') {
+            initializer.pop_back();
+        }
+        std::string increment = generateStatement(*forStatement->increment);
+        if (!increment.empty() && increment.back()==';') {
+            increment.pop_back();
+        }
+        output+="for (";
+        output+=initializer;
+        output+="; ";
+        output+=generateExpression(*forStatement->condition);
+        output+="; ";
+        output+=increment;
+        output+=")\n";
+        output+="   {\n";
+        for (const auto& nestedStatement:forStatement->body) {
+            output+="       ";
+            output+=generateStatement(*nestedStatement);
+            output+="\n";
+        }
+        output+="   }";
+        return output;
+    }
     throw std::runtime_error(
         "Code generation error: unsupported statement."
     );

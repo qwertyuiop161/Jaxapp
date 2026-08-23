@@ -1,8 +1,5 @@
 fn main() {
-    int x = 0;
-
-    while (x < 5) {
-        print(x);
-        x = x + 1;
+    for (int i = 0; i < 5; i = i + 1) {
+        print(i);
     }
 }

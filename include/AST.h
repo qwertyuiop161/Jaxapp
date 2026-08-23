@@ -126,3 +126,19 @@ class WhileStatement : public Statement {
             std::vector<std::unique_ptr<Statement>> body
         ) : condition(std::move(condition)), body(std::move(body)) {}
 };
+class ForStatement : public Statement {
+    public:
+        std::unique_ptr<Statement> initializer;
+        std::unique_ptr<Expression> condition;
+        std::unique_ptr<Statement> increment;
+        std::vector<std::unique_ptr<Statement>> body;
+        ForStatement(
+            std::unique_ptr<Statement> initializer,
+            std::unique_ptr<Expression> condition,
+            std::unique_ptr<Statement> increment,
+            std::vector<std::unique_ptr<Statement>> body
+        ) : initializer(std::move(initializer)),
+        condition(std::move(condition)),
+        increment(std::move(increment)),
+        body(std::move(body)) {}
+};

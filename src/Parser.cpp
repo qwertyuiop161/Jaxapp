@@ -324,6 +324,11 @@ std::unique_ptr<Statement> Parser::ifStatement() {
     std::vector<std::unique_ptr<Statement>> elseBranch;
 
     if (match(TokenType::Else)) {
+        if (match(TokenType::If)) {
+            elseBranch.push_back(
+                ifStatement()
+            );
+        } else {
         consume(
             TokenType::LeftBrace,
             "Expected '{' before else body"
@@ -336,7 +341,7 @@ std::unique_ptr<Statement> Parser::ifStatement() {
         consume(
             TokenType::RightBrace,
             "Expected '}' after else body"
-        );
+        );}
     }
 
     return std::make_unique<IfStatement>(
@@ -357,4 +362,54 @@ std::unique_ptr<Statement> Parser::whileStatement() {
     consume(TokenType::RightBrace, "Expected '}' after while body");
 
     return std::make_unique<WhileStatement>(std::move(condition), std::move(body));
+}
+std::unique_ptr<Statement> Parser::forStatement() {
+    consume(
+        TokenType::LeftParen,
+        "Expected '(' after 'for'"
+    );
+    std::unique_ptr<Statement> initializer;
+    if(check(TokenType::StringType) || check(TokenType::Int)||check(TokenType::Bool)) {
+        initializer = variableDeclaration();
+    } else {
+        throw std::runtime_error("Expected variable declaration in for initializer");
+    }
+    auto condition = expression();
+    consume(
+        TokenType::Semicolon,
+        "Expected ';' after for condition"
+    );
+
+    const Token& name = consume(
+        TokenType::Identifier,
+        "Expected variable name in for increment"
+    );
+    consume(
+        TokenType::Equal,
+        "Expected '=' in for increment"
+    );
+    auto incrementValue = expression();
+    auto increment = std::make_unique<AssignmentStatement>(name.lexeme, std::move(incrementValue));
+    consume(
+        TokenType::RightParen,
+        "Expected ')' after for clauses"
+    );
+    consume(
+        TokenType::LeftBrace,
+        "Expected '{' before for body"
+    );
+    std::vector<std::unique_ptr<Statement>> body;
+    while (!check(TokenType::RightBrace) && !isAtEnd()) {
+        body.push_back(statement());
+    }
+    consume(
+        TokenType::RightBrace,
+        "Expected '}' after for body"
+    );
+    return std::make_unique<ForStatement>(
+        std::move(initializer),
+        std::move(condition),
+        std::move(increment),
+        std::move(body)
+    );
 }
