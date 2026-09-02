@@ -54,41 +54,31 @@ std::unique_ptr<Program> Parser::parse() {
 }
 std::unique_ptr<FunctionDeclaration>
 Parser::functionDeclaration() {
-    const Token& name = consume(
-        TokenType::Identifier,
-        "Expected function name after 'fn'"
-    );
-
-    consume(
-        TokenType::LeftParen,
-        "Expected '(' after function name"
-    );
-
-    consume(
-        TokenType::RightParen,
-        "Expected ')' after function parameters"
-    );
-
-    consume(
-        TokenType::LeftBrace,
-        "Expected '{' before function body"
-    );
-
-    auto function =
-        std::make_unique<FunctionDeclaration>(name.lexeme);
-
-    while (
-        !check(TokenType::RightBrace) &&
-        !isAtEnd()
-    ) {
+    const Token& name = consume(TokenType::Identifier, "Expected function name");
+    auto function = std::make_unique<FunctionDeclaration>(name.lexeme);
+    consume(TokenType::LeftParen,"Expected '(' after function name");
+    if (!check(TokenType::RightParen)) {
+        do {
+            std::string type;
+            if (match(TokenType::StringType)) {
+                type = "string";
+            } else if (match(TokenType::Int)) {
+                type = "int";
+            } else if (match(TokenType::Bool)) {
+                type = "bool";
+            } else {
+                throw std::runtime_error("Expected parameter type");
+            }
+            const Token& parameterName = consume(TokenType::Identifier,"Expected parameter name");
+            function->parameters.emplace_back(type, parameterName.lexeme);
+        } while (match(TokenType::Comma));
+    }
+    consume(TokenType::RightParen, "Expected ')' after parameters");
+    consume(TokenType::LeftBrace, "Expected '{' before function body");
+    while (!check(TokenType::RightBrace)&&!isAtEnd()) {
         function->body.push_back(statement());
     }
-
-    consume(
-        TokenType::RightBrace,
-        "Expected '}' after function body"
-    );
-
+    consume(TokenType::RightBrace,"Expected '}' after function body");
     return function;
 }
 std::unique_ptr<Statement> Parser::statement() {
@@ -97,6 +87,23 @@ std::unique_ptr<Statement> Parser::statement() {
     }
     if (match(TokenType::While)) {
         return whileStatement();
+    }
+    if (match(TokenType::For)) {
+        return forStatement();
+    }
+    if (match(TokenType::Break)) {
+        consume(
+            TokenType::Semicolon,
+            "Expected ';' after break"
+        );
+        return std::make_unique<BreakStatement>();
+    }
+    if (match(TokenType::Continue)) {
+        consume(
+            TokenType::Semicolon,
+            "Expected ';' after continue"
+        );
+        return std::make_unique<ContinueStatement>();
     }
     if (check(TokenType::StringType) || check(TokenType::Int) || check(TokenType::Bool)) {
         return variableDeclaration();
@@ -154,17 +161,17 @@ std::unique_ptr<Statement> Parser::functionCall() {
         TokenType::Identifier,
         "Expected function name"
     );
-
+    auto call = std::make_unique<FunctionCall>(name.lexeme);
     consume(
         TokenType::LeftParen,
         "Expected '(' after function name"
     );
 
-    auto call =
-        std::make_unique<FunctionCall>(name.lexeme);
 
     if (!check(TokenType::RightParen)) {
+        do {
         call->arguments.push_back(expression());
+        } while (match(TokenType::Comma));
     }
 
     consume(

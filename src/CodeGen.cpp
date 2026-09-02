@@ -33,7 +33,26 @@ std::string CodeGenerator::generateFunction(
     if (function.name == "main") {
         output += "int main()\n";
     } else {
-        output += "void " + function.name + "()\n";
+        output += "void " + function.name + "(";
+        for (std::size_t i = 0; i<function.parameters.size(); ++i) {
+            const auto& parameter = function.parameters[i];
+            if (parameter.type=="string") {
+                output +="std::string";
+            } else if (parameter.type == "int") {
+                output+="int";
+            } else if (parameter.type=="bool") {
+                output+="bool";
+            } else {
+                throw std::runtime_error(
+                    "Code generation error: unsupported parameter type '" + parameter.type + "'."
+                );
+            }
+            output += " " + parameter.name;
+            if (i+1<function.parameters.size()) {
+                output+=", ";
+            }
+        }
+        output+=")\n";
     }
 
     output += "{\n";
@@ -83,15 +102,16 @@ std::string CodeGenerator::generateStatement(const Statement& statement) {
                    generateExpression(*call->arguments[0]) +
                    " << '\\n';";
         }
-
-        if (!call->arguments.empty()) {
-            throw std::runtime_error(
-                "Code generation error: user-defined function arguments "
-                "are not supported yet."
-            );
+        std::string output = call->name + "(";
+        for (std::size_t i = 0; i<call->arguments.size(); ++i) {
+            output+=generateExpression(*call->arguments[i]);
+            if (i+1<call->arguments.size()) {
+                output+=", ";
+            }
         }
+        output+=");";
 
-        return call->name + "();";
+        return output;
     }
     if (const auto* ifStatement = dynamic_cast<const IfStatement*>(&statement)) {
         std::string output;
@@ -157,6 +177,12 @@ std::string CodeGenerator::generateStatement(const Statement& statement) {
         }
         output+="   }";
         return output;
+    }
+    if (dynamic_cast<const BreakStatement*>(&statement)) {
+        return "break;";
+    }
+    if (dynamic_cast<const ContinueStatement*>(&statement)) {
+        return "continue;";
     }
     throw std::runtime_error(
         "Code generation error: unsupported statement."

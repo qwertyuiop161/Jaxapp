@@ -235,6 +235,10 @@ TokenType Lexer::keywordType(const std::string& text) {
         return TokenType::Bool;
     if (text=="true")
         return TokenType::True;
+    if (text=="break")
+        return TokenType::Break;
+    if (text=="continue")
+        return TokenType::Continue;
     if (text=="false")
         return TokenType::False;
     if (text=="null")

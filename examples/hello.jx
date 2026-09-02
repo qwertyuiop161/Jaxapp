@@ -1,5 +1,7 @@
+fn greet(string name) {
+    print(name);
+}
+
 fn main() {
-    for (int i = 0; i < 5; i = i + 1) {
-        print(i);
-    }
+    greet("Hashir");
 }

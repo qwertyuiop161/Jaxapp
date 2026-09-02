@@ -1,5 +1,5 @@
 ﻿#include "Semantic.h"
-
+#include <iostream>
 #include <stdexcept>
 void SemanticAnalyzer::beginScope() {
     scopes.emplace_back();
@@ -27,34 +27,37 @@ const std::string* SemanticAnalyzer::findVariable(const std::string& name) const
     return nullptr;
 }
 void SemanticAnalyzer::analyze(const Program& program) {
-    bool foundMain = false;
     functions.clear();
 
     for (const auto& function : program.functions) {
-        if (functions.contains(function->name)) {
-            throw std::runtime_error("Semantic error: function '" + function->name + "' is already declared.");
+        FunctionInfo info;
+        for (const auto& parameter:function->parameters) {
+            info.parameterTypes.push_back(parameter.type);
         }
-        functions.insert(function->name);
-        if (function->name == "main") {
-            if (foundMain) {
-                throw std::runtime_error("Semantic error: multiple main functions.");
-            }
-            foundMain = true;
-        }
-    }
-    if (!foundMain) {
-        throw std::runtime_error("Semantic error: program must contain a main function.");
+        functions[function->name]=info;
     }
     for (const auto& function : program.functions) {
         analyzeFunction(*function);
     }
 }
-void SemanticAnalyzer::analyzeFunction(const FunctionDeclaration& function) {
+void SemanticAnalyzer::analyzeFunction(
+    const FunctionDeclaration& function
+) {
     scopes.clear();
     beginScope();
+
+    for (const auto& parameter : function.parameters) {
+
+        declareVariable(
+            parameter.name,
+            parameter.type
+        );
+    }
+
     for (const auto& statement : function.body) {
         analyzeStatement(*statement);
     }
+
     endScope();
 }
 void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
@@ -81,22 +84,70 @@ void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
         }
         return;
     }
-    if (const auto* call = dynamic_cast<const FunctionCall*>(&statement)) {
-        if (call->name=="print") {
-            if (call->arguments.size()!=1) {
-                throw std::runtime_error("Semantic error: print requires exactly one argument.");
-            }
-            analyzeExpression(*call->arguments[0]);
-            return;
+    if (const auto* call =
+        dynamic_cast<const FunctionCall*>(&statement)) {
+
+    if (call->name == "print") {
+        if (call->arguments.size() != 1) {
+            throw std::runtime_error(
+                "Semantic error: print() expects exactly 1 argument."
+            );
         }
-        if (!functions.contains(call->name)) {
-            throw std::runtime_error("Semantic error: unknown function '" + call->name + "'.");
-        }
-        if (!call->arguments.empty()) {
-            throw std::runtime_error("Semantic error: function '" + call->name + "' does not accept arguments.");
-        }
+
+        analyzeExpression(*call->arguments[0]);
+
         return;
     }
+
+    auto functionIt = functions.find(call->name);
+
+    if (functionIt == functions.end()) {
+        throw std::runtime_error(
+            "Semantic error: undefined function '" +
+            call->name +
+            "'."
+        );
+    }
+
+    const auto& parameters =
+        functionIt->second.parameterTypes;
+
+    if (call->arguments.size() != parameters.size()) {
+        throw std::runtime_error(
+            "Semantic error: function '" +
+            call->name +
+            "' expects " +
+            std::to_string(parameters.size()) +
+            " argument(s), but got " +
+            std::to_string(call->arguments.size()) +
+            "."
+        );
+    }
+
+    for (std::size_t i = 0;
+         i < call->arguments.size();
+         ++i) {
+
+        const std::string argumentType =
+            analyzeExpression(*call->arguments[i]);
+
+        if (argumentType != parameters[i]) {
+            throw std::runtime_error(
+                "Semantic error: argument " +
+                std::to_string(i + 1) +
+                " of function '" +
+                call->name +
+                "' must be '" +
+                parameters[i] +
+                "', but got '" +
+                argumentType +
+                "'."
+            );
+        }
+    }
+
+    return;
+}
     if (const auto* ifStatement = dynamic_cast<const IfStatement*>(&statement)) {
         const std::string conditionType = analyzeExpression(*ifStatement->condition);
 
@@ -123,9 +174,11 @@ void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
             throw std::runtime_error("Semantic error: while condition must be bool");
         }
         beginScope();
+        loopDepth++;
         for (const auto& nestedStatement : whileStatement->body) {
             analyzeStatement(*nestedStatement);
         }
+        loopDepth--;
         endScope();
         return;
     }
@@ -139,13 +192,27 @@ void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
             endScope();
             throw std::runtime_error("Semantic error: for condition must be bool.");
         }
+        loopDepth++;
         for (const auto& nestedStatement : forStatement->body) {
             analyzeStatement(*nestedStatement);
         }
         if (forStatement->increment) {
             analyzeStatement(*forStatement->increment);
         }
+        loopDepth--;
         endScope();
+        return;
+    }
+    if (dynamic_cast<const BreakStatement*>(&statement)) {
+        if (loopDepth==0) {
+            throw std::runtime_error("Semantic error: 'break' can only be used inside a loop.");
+        }
+        return;
+    }
+    if (dynamic_cast<const ContinueStatement*>(&statement)) {
+        if (loopDepth==0) {
+            throw std::runtime_error("Semantic error: 'continue' can only be used inside a loop");
+        }
         return;
     }
     throw std::runtime_error("Semantic error: unknown statement.");

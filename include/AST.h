@@ -61,10 +61,18 @@ class VariableDeclaration : public Statement {
             std::unique_ptr<Expression> initializer
         ) : type(type), name(name), initializer(std::move(initializer)) {}
 };
-
+struct Parameter {
+    std::string type;
+    std::string name;
+    Parameter(
+        const std::string& type,
+        const std::string& name
+    ) : type(type), name(name) {}
+};
 class FunctionDeclaration : public ASTNode {
     public:
         std::string name;
+        std::vector<Parameter> parameters;
         std::vector<std::unique_ptr<Statement>> body;
         explicit FunctionDeclaration (const std::string& name) : name(name) {}
 };
@@ -141,4 +149,10 @@ class ForStatement : public Statement {
         condition(std::move(condition)),
         increment(std::move(increment)),
         body(std::move(body)) {}
+};
+class BreakStatement : public Statement {
+
+};
+class ContinueStatement : public Statement {
+
 };

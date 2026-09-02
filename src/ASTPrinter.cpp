@@ -98,6 +98,16 @@ void ASTPrinter::printStatement(
         }
         return;
     }
+    if(dynamic_cast<const BreakStatement*>(&statement)) {
+        printIndent(indent);
+        std::cout <<"Break\n";
+        return;
+    }
+    if (dynamic_cast<const ContinueStatement*>(&statement)) {
+        printIndent(indent);
+        std::cout<<"Continue\n";
+        return;
+    }
     printIndent(indent);
     std::cout << "Unknown statement\n";
 }

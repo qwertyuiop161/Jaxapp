@@ -1,15 +1,16 @@
 #include <iostream>
 #include <string>
 
+void greet();
+
+void greet(std::string name)
+{
+    std::cout << name << '\n';
+}
 
 int main()
 {
-    int x = 0;
-    while ((x < 5))
-   {
-       std::cout << x << '\n';
-       x = (x + 1);
-   }
+    greet("Hashir");
     return 0;
 }
 

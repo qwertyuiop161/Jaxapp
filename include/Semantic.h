@@ -2,6 +2,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <vector>
 #include <unordered_set>
 
 #include "AST.h"
@@ -11,8 +12,11 @@ class SemanticAnalyzer {
         void analyze(const Program& program);
     private:
         std::vector<std::unordered_map<std::string, std::string>> scopes;
-        std::unordered_set<std::string> functions;
-
+        struct FunctionInfo {
+            std::vector<std::string> parameterTypes;
+        };
+        std::unordered_map<std::string,FunctionInfo> functions;
+        int loopDepth=0;
         void analyzeFunction(const FunctionDeclaration& function);
 
         void analyzeStatement(const Statement& statement);
