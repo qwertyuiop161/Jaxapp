@@ -42,7 +42,7 @@ class Statement : public ASTNode {
         virtual ~Statement() = default;
 };
 
-class FunctionCall : public Statement {
+class FunctionCall : public Expression, public Statement {
     public:
         std::string name;
         std::vector<std::unique_ptr<Expression>> arguments;
@@ -74,6 +74,7 @@ class FunctionDeclaration : public ASTNode {
         std::string name;
         std::vector<Parameter> parameters;
         std::vector<std::unique_ptr<Statement>> body;
+        std::string returnType;
         explicit FunctionDeclaration (const std::string& name) : name(name) {}
 };
 
@@ -155,4 +156,12 @@ class BreakStatement : public Statement {
 };
 class ContinueStatement : public Statement {
 
+};
+class ReturnStatement : public Statement {
+    public:
+        std::unique_ptr<Expression> value;
+        explicit ReturnStatement(
+            std::unique_ptr<Expression> value
+        )
+            : value(std::move(value)) {}
 };

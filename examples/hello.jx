@@ -1,7 +1,6 @@
-fn greet(string name) {
-    print(name);
+fn int add(int a, int b) {
+    return a+b;
 }
-
-fn main() {
-    greet("Hashir");
+fn void main() {
+    print(add(5,7));
 }

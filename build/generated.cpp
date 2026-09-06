@@ -1,16 +1,16 @@
 #include <iostream>
 #include <string>
 
-void greet();
+int add(int a, int b);
 
-void greet(std::string name)
+int add(int a, int b)
 {
-    std::cout << name << '\n';
+    return (a + b);
 }
 
 int main()
 {
-    greet("Hashir");
+    std::cout << add(5, 7) << '\n';
     return 0;
 }
 

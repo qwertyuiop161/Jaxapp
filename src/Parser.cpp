@@ -54,8 +54,21 @@ std::unique_ptr<Program> Parser::parse() {
 }
 std::unique_ptr<FunctionDeclaration>
 Parser::functionDeclaration() {
+    std::string returnType;
+    if (match(TokenType::StringType)) {
+        returnType = "string";
+    } else if (match(TokenType::Int)) {
+        returnType = "int";
+    } else if (match(TokenType::Bool)) {
+        returnType = "bool";
+    } else if (match(TokenType::Void)) {
+        returnType = "void";
+    } else {
+        throw std::runtime_error("Expected function return type");
+    }
     const Token& name = consume(TokenType::Identifier, "Expected function name");
     auto function = std::make_unique<FunctionDeclaration>(name.lexeme);
+    function->returnType = returnType;
     consume(TokenType::LeftParen,"Expected '(' after function name");
     if (!check(TokenType::RightParen)) {
         do {
@@ -97,6 +110,9 @@ std::unique_ptr<Statement> Parser::statement() {
             "Expected ';' after break"
         );
         return std::make_unique<BreakStatement>();
+    }
+    if (match(TokenType::Return)) {
+        return returnStatement();
     }
     if (match(TokenType::Continue)) {
         consume(
@@ -202,7 +218,18 @@ std::unique_ptr<Expression> Parser::primary() {
         return std::make_unique<BooleanLiteral>(false);
     }
     if (match(TokenType::Identifier)) {
-        return std::make_unique<IdentifierExpression>(previous().lexeme);
+        const std::string name = previous().lexeme;
+        if (match(TokenType::LeftParen)) {
+            auto call = std::make_unique<FunctionCall>(name);
+            if (!check(TokenType::RightParen)) {
+                do {
+                    call->arguments.push_back(expression());
+                } while (match(TokenType::Comma));
+            }
+            consume(TokenType::RightParen,"Expected ')' after function arguments");
+            return call;
+        }
+        return std::make_unique<IdentifierExpression>(name);
     }
     if (match(TokenType::LeftParen)) {
         auto expressionInside = expression();
@@ -418,5 +445,15 @@ std::unique_ptr<Statement> Parser::forStatement() {
         std::move(condition),
         std::move(increment),
         std::move(body)
+    );
+}
+std::unique_ptr<Statement> Parser::returnStatement() {
+    auto value = expression();
+    consume(
+        TokenType::Semicolon,
+        "Expected ';' after return value"
+    );
+    return std::make_unique<ReturnStatement>(
+        std::move(value)
     );
 }

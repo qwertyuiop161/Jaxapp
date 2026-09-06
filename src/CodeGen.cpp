@@ -11,9 +11,39 @@ std::string CodeGenerator::generate(
     output += "#include <string>\n\n";
 
     for (const auto& function : program.functions) {
-        if (function->name != "main") {
-            output += "void " + function->name + "();\n";
+        if (function->name == "main") {
+            continue;
         }
+        std::string cppReturnType;
+        if (function->returnType == "string") {
+            cppReturnType = "std::string";
+        } else if (function->returnType == "int") {
+            cppReturnType = "int";
+        } else if (function->returnType == "bool") {
+            cppReturnType = "bool";
+        } else if (function->returnType == "void") {
+            cppReturnType = "void";
+        } else {
+            throw std::runtime_error("Code generation error: unsupported return type '" + function->returnType + "'.");
+        }
+        output+=cppReturnType+" "+function->name+"(";
+        for (std::size_t i = 0; i<function->parameters.size(); ++i) {
+            const auto& parameter = function->parameters[i];
+            if (parameter.type == "string") {
+                output += "std::string";
+            } else if (parameter.type == "int") {
+                output += "int";
+            } else if (parameter.type == "bool") {
+                output += "bool";
+            } else {
+                throw std::runtime_error("Code generation error: unsupported parameter type '" + parameter.type + "'.");
+            }
+            output+=" "+parameter.name;
+            if (i+1<function->parameters.size()) {
+                output+=", ";
+            }
+        }
+        output+=");\n";
     }
 
     output += "\n";
@@ -33,7 +63,19 @@ std::string CodeGenerator::generateFunction(
     if (function.name == "main") {
         output += "int main()\n";
     } else {
-        output += "void " + function.name + "(";
+        std::string cppReturnType;
+        if (function.returnType == "string") {
+            cppReturnType = "std::string";
+        } else if (function.returnType == "int") {
+            cppReturnType = "int";
+        } else if (function.returnType == "bool") {
+            cppReturnType = "bool";
+        } else if (function.returnType == "void") {
+            cppReturnType = "void";
+        } else {
+            throw std::runtime_error("Code generation error: unsupported return type '" + function.returnType + "'.");
+        }
+        output+=cppReturnType+" "+ function.name+"(";
         for (std::size_t i = 0; i<function.parameters.size(); ++i) {
             const auto& parameter = function.parameters[i];
             if (parameter.type=="string") {
@@ -184,6 +226,12 @@ std::string CodeGenerator::generateStatement(const Statement& statement) {
     if (dynamic_cast<const ContinueStatement*>(&statement)) {
         return "continue;";
     }
+    if (const auto* returnStatement = dynamic_cast<const ReturnStatement*>(&statement)) {
+        if (!returnStatement->value) {
+            return "return;";
+        }
+        return "return " + generateExpression(*returnStatement->value) + ";";
+    }
     throw std::runtime_error(
         "Code generation error: unsupported statement."
     );
@@ -207,6 +255,17 @@ std::string CodeGenerator::generateExpression(
     if (const auto* identifier =
             dynamic_cast<const IdentifierExpression*>(&expression)) {
         return identifier->name;
+    }
+    if (const auto& call = dynamic_cast<const FunctionCall*>(&expression)) {
+        std::string output = call->name + "(";
+        for (std::size_t i = 0; i<call->arguments.size(); ++i) {
+            output+=generateExpression(*call->arguments[i]);
+            if (i+1<call->arguments.size()) {
+                output+=", ";
+            }
+        }
+        output += ")";
+        return output;
     }
     if (const auto* binary = dynamic_cast<const BinaryExpression*>(&expression)) {
         return "(" + generateExpression(*binary->left) + " " + binary->operation + " " + generateExpression(*binary->right) + ")";

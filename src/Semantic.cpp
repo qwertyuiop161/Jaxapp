@@ -31,6 +31,7 @@ void SemanticAnalyzer::analyze(const Program& program) {
 
     for (const auto& function : program.functions) {
         FunctionInfo info;
+        info.returnType = function->returnType;
         for (const auto& parameter:function->parameters) {
             info.parameterTypes.push_back(parameter.type);
         }
@@ -43,6 +44,7 @@ void SemanticAnalyzer::analyze(const Program& program) {
 void SemanticAnalyzer::analyzeFunction(
     const FunctionDeclaration& function
 ) {
+    currentReturnType = function.returnType;
     scopes.clear();
     beginScope();
 
@@ -215,6 +217,19 @@ void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
         }
         return;
     }
+    if (const auto& returnStatement = dynamic_cast<const ReturnStatement*>(&statement)) {
+        if (currentReturnType=="void") {
+            throw std::runtime_error("Semantic error: void functions cannot return a value;");
+        }
+        if (!returnStatement->value) {
+            throw std::runtime_error("Semantic error: non-void functions must return a value.");
+        }
+        const std::string valueType = analyzeExpression(*returnStatement->value);
+        if (valueType!=currentReturnType) {
+            throw std::runtime_error("Semantic error: functions returns '" + currentReturnType + "', but returned expression has type '" + valueType + "'.");
+        }
+        return;
+    }
     throw std::runtime_error("Semantic error: unknown statement.");
 }
 std::string SemanticAnalyzer::analyzeExpression(const Expression& expression) {
@@ -274,6 +289,31 @@ std::string SemanticAnalyzer::analyzeExpression(const Expression& expression) {
             return "bool";
         }
         throw std::runtime_error("Semantic error: unsupported unary operator '" + unary->operation + "'.");
+    }
+    if (const auto* call = dynamic_cast<const FunctionCall*>(&expression)) {
+        if (call->name == "print") {
+            if (call->arguments.size() != 1) {
+                throw std::runtime_error("Semantic error: print() expects exactly one argument.");
+            }
+            analyzeExpression(*call->arguments[0]);
+            return "void";
+        }
+        auto functionIt = functions.find(call->name);
+        if (functionIt == functions.end()) {
+            throw std::runtime_error("Semantic error: undefined function '" + call->name + "'.");
+        }
+        const auto& parameters = functionIt->second.parameterTypes;
+        if (call->arguments.size() != parameters.size()) {
+            throw std::runtime_error("Semantic error: function '" + call->name + "' expects " + std::to_string(parameters.size()) + "argument(s), but got " + std::to_string(call->arguments.size()) + ".");
+        }
+        for (std::size_t i = 0; i<call->arguments.size(); ++i) {
+            const std::string argumentType = analyzeExpression(*call->arguments[i]);
+
+            if (argumentType != parameters[i]) {
+                throw std::runtime_error("Semantic error: argument " + std::to_string(i + 1) + " of function '" + call->name + "' must be '" + parameters[i] + "', but got '" + argumentType + "'.");
+            }
+        }
+        return functionIt->second.returnType;
     }
     throw std::runtime_error("Semantic error: unsupported expression.");
 }

@@ -31,7 +31,7 @@ int main() {
 
         Lexer lexer(source);
         auto tokens = lexer.tokenize();
-
+        
         Parser parser(tokens);
         auto program = parser.parse();
 

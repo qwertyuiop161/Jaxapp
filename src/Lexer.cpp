@@ -7,7 +7,9 @@ Lexer::Lexer(const std::string& source)
 std::vector<Token> Lexer::tokenize()
 {
     while (!isAtEnd()) {
-        start = current;
+        skipWhitespace();
+        if (isAtEnd()) break;
+        start=current;
         scanToken();
     }
     tokens.push_back({
@@ -20,6 +22,8 @@ std::vector<Token> Lexer::tokenize()
 }
 void Lexer::scanToken()
 {
+    skipWhitespace();
+    if (isAtEnd()) return;
     char c = advance();
     switch(c) {
         case '(':
@@ -233,6 +237,8 @@ TokenType Lexer::keywordType(const std::string& text) {
         return TokenType::For;
     if (text=="bool")
         return TokenType::Bool;
+    if (text=="void")
+        return TokenType::Void;
     if (text=="true")
         return TokenType::True;
     if (text=="break")

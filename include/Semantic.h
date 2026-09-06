@@ -12,8 +12,10 @@ class SemanticAnalyzer {
         void analyze(const Program& program);
     private:
         std::vector<std::unordered_map<std::string, std::string>> scopes;
+        std::string currentReturnType;
         struct FunctionInfo {
             std::vector<std::string> parameterTypes;
+            std::string returnType;
         };
         std::unordered_map<std::string,FunctionInfo> functions;
         int loopDepth=0;
