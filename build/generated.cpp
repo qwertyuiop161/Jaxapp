@@ -1,16 +1,17 @@
 #include <iostream>
 #include <string>
 
-int add(int a, int b);
+int getNumber();
 
-int add(int a, int b)
+int getNumber()
 {
-    return (a + b);
+    return 7;
 }
 
 int main()
 {
-    std::cout << add(5, 7) << '\n';
+    int x = getNumber();
+    std::cout << x << '\n';
     return 0;
 }
 

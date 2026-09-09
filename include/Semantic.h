@@ -24,6 +24,7 @@ class SemanticAnalyzer {
         void analyzeStatement(const Statement& statement);
 
         void beginScope();
+        bool statementAlwaysReturns(const Statement& statement) const;
         void endScope();
 
         void declareVariable(const std::string& name, const std::string& type);

@@ -47,19 +47,17 @@ void SemanticAnalyzer::analyzeFunction(
     currentReturnType = function.returnType;
     scopes.clear();
     beginScope();
-
     for (const auto& parameter : function.parameters) {
-
-        declareVariable(
-            parameter.name,
-            parameter.type
-        );
+        declareVariable(parameter.name, parameter.type);
     }
-
     for (const auto& statement : function.body) {
         analyzeStatement(*statement);
     }
-
+    if (currentReturnType != "void") {
+        if (function.body.empty() || !statementAlwaysReturns(*function.body.back())) {
+            throw std::runtime_error("Semantic error: function '" + function.name + "' must return a value on every path.");
+        }
+    }
     endScope();
 }
 void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
@@ -226,11 +224,25 @@ void SemanticAnalyzer::analyzeStatement(const Statement& statement) {
         }
         const std::string valueType = analyzeExpression(*returnStatement->value);
         if (valueType!=currentReturnType) {
-            throw std::runtime_error("Semantic error: functions returns '" + currentReturnType + "', but returned expression has type '" + valueType + "'.");
+            throw std::runtime_error("Semantic error: function returns '" + currentReturnType + "', but returned expression has type '" + valueType + "'.");
         }
         return;
     }
     throw std::runtime_error("Semantic error: unknown statement.");
+}
+bool SemanticAnalyzer::statementAlwaysReturns(const Statement& statement) const {
+    if (dynamic_cast<const ReturnStatement*>(&statement)) {
+        return true;
+    }
+    if (const auto* ifStatement = dynamic_cast<const IfStatement*>(&statement)) {
+        if (ifStatement->elseBranch.empty()) {
+            return false;
+        }
+        return !ifStatement->thenBranch.empty() &&
+        statementAlwaysReturns(*ifStatement->thenBranch.back()) &&
+        statementAlwaysReturns(*ifStatement->elseBranch.back());
+    }
+    return false;
 }
 std::string SemanticAnalyzer::analyzeExpression(const Expression& expression) {
     if (dynamic_cast<const StringLiteral*>(&expression)) {
